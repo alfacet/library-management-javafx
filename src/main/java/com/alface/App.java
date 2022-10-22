@@ -13,19 +13,27 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
-
+    private static String user;
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("login"));
+        scene = new Scene(loadFXML("primary"));
         //..\..\..\images\book_login_page.png
         stage.getIcons().add(new Image("https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/77/Enchanting_Table_JE4_BE2.png/revision/latest?cb=20200315175031"));
         stage.setResizable(false);
         stage.setScene(scene);
+        stage.setTitle("Gerenciador de livros");
         stage.show();
     }
-
+    static public void setUser(String u)
+    {
+        user = u;
+    }
+    static public String getUser()
+    {
+        return user;
+    }
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
