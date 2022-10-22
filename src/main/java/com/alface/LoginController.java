@@ -18,13 +18,13 @@ public class LoginController {
     @FXML Label messageLogin;
     @FXML ImageView imagemTela;
 
-    String path = "file:\\\\\\" + System.getProperty("user.dir") + "\\src\\main\\images\\jeff_01.jpg";
+    String path = "file:\\\\\\" + System.getProperty("user.dir") + "\\src\\main\\images\\bookcase.png";
 
     final Image IMG_MINE = new Image(path);
 
     @FXML 
     public void initialize() {
-        System.out.println(System.getProperty("user.dir") + "\\src\\main\\images\\jeff_01.jpg");
+        System.out.println(System.getProperty("user.dir") + "\\src\\main\\images\\bookcase.png");
 
         display();
     }
