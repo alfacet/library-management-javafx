@@ -5,17 +5,17 @@ import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
 import javafx.scene.layout.VBox;
 
 public class LoginController {
-    
+    @FXML VBox tela;
+    @FXML CheckBox mostrar;
+    @FXML PasswordField inputSenha;
+    @FXML TextField senhaMostrada;
+    @FXML TextField inputNome;
+    @FXML Label messageLogin;
     @FXML ImageView imagemTela;
 
     String path = "file:\\\\\\" + System.getProperty("user.dir") + "\\src\\main\\images\\bookcase.png";
@@ -31,7 +31,6 @@ public class LoginController {
 
     @FXML
     public void display() {
-        // System.out.println(System.getProperty("user.dir") + "\\src\\main\\images\\bookcase.png");
         imagemTela.setImage(IMG_MINE);
     }
 
@@ -42,26 +41,12 @@ public class LoginController {
     }
 
     @FXML
-    VBox tela;
-    @FXML
-    CheckBox mostrar;
-    @FXML
-    PasswordField inputSenha;
-    @FXML
-    TextField senhaMostrada;
-    @FXML
-    TextField inputNome;
-    @FXML
-    Label messageLogin;
- 
-    @FXML
-    public void mudarCursor()
-    {
+    public void mudarCursor() {
         tela.setCursor(Cursor.HAND);
     }
+
     @FXML
-    public void voltarCursor()
-    {
+    public void voltarCursor() {
         tela.setCursor(Cursor.DEFAULT);
     }
 }

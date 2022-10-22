@@ -9,9 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-/**
- * JavaFX App
- */
 public class App extends Application {
     private static String user;
     private static Scene scene;
@@ -26,14 +23,15 @@ public class App extends Application {
         stage.setTitle("Gerenciador de livros épico com doge");
         stage.show();
     }
-    static public void setUser(String u)
-    {
+
+    static public void setUser(String u)  {
         user = u;
     }
-    static public String getUser()
-    {
+
+    static public String getUser() {
         return user;
     }
+
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }

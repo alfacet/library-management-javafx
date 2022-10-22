@@ -16,37 +16,32 @@ public class SecondaryController {
     final Image IMG_STATS_ICON = new Image("https://cdn-icons-png.flaticon.com/512/3309/3309960.png");
    
 
-    @FXML
-    Label titulo;
-    @FXML
-    ImageView imagemVerLivros;
-    @FXML
-    ImageView imagemAddLivro;
-    @FXML
-    ImageView imagemEstatisticas;
-    @FXML
-    VBox tela;
-    @FXML
-    Circle circulo1;
-    public void initialize()
-    {
+    @FXML Label titulo;
+    @FXML ImageView imagemVerLivros;
+    @FXML ImageView imagemAddLivro;
+    @FXML ImageView imagemEstatisticas;
+    @FXML VBox tela;
+    @FXML Circle circulo1;
+    
+    public void initialize() {
         titulo.setText("Olá, " + App.getUser() + "!");
         imagemVerLivros.setImage(IMG_LIVRO_ICON);
         imagemAddLivro.setImage(IMG_ADD_ICON);
         imagemEstatisticas.setImage(IMG_STATS_ICON);
     }
+    
     @FXML
     private void switchToPrimary() throws IOException {
         App.setRoot("login");
     }
+
     @FXML
-    public void mudarCursor()
-    {
+    public void mudarCursor() {
         tela.setCursor(Cursor.HAND);
     }
+
     @FXML
-    public void voltarCursor()
-    {
+    public void voltarCursor() {
         tela.setCursor(Cursor.DEFAULT);
     }
 }
