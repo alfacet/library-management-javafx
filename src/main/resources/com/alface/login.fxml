@@ -32,7 +32,7 @@
             </Button>
             <ImageView fx:id="imagemTela" fitHeight="343.0" fitWidth="209.0" layoutX="386.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../images/bookcase.png" />
+                  <Image url="@../../../images/jeff_01.jpg" />
                </image>
             </ImageView>
             <Label layoutX="200.0" layoutY="84.0" />
