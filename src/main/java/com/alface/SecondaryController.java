@@ -14,6 +14,8 @@ public class SecondaryController {
     final Image IMG_LIVRO_ICON = new Image("https://cdn-icons-png.flaticon.com/512/926/926321.png");
     final Image IMG_ADD_ICON = new Image("https://cdn-icons-png.flaticon.com/512/148/148781.png");
     final Image IMG_STATS_ICON = new Image("https://cdn-icons-png.flaticon.com/512/3309/3309960.png");
+   
+
     @FXML
     Label titulo;
     @FXML
@@ -35,7 +37,7 @@ public class SecondaryController {
     }
     @FXML
     private void switchToPrimary() throws IOException {
-        App.setRoot("primary");
+        App.setRoot("login");
     }
     @FXML
     public void mudarCursor()
