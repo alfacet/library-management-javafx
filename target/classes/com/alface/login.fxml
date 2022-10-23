@@ -20,12 +20,12 @@
                </font></Label>
             <TextField fx:id="inputNome" layoutX="81.0" layoutY="116.0" prefHeight="30.0" prefWidth="228.0" promptText="Enter your username" style="-fx-background-radius: 5px;" />
             <PasswordField fx:id="inputSenha" layoutX="81.0" layoutY="172.0" prefHeight="30.0" prefWidth="228.0" promptText="Enter your password" style="-fx-background-radius: 5px;" />
-            <Button fx:id="loginButton" layoutX="81.0" layoutY="254.0" mnemonicParsing="false" onAction="#loginAction" onMouseEntered="#mudarCursor" onMouseExited="#voltarCursor" prefHeight="30.0" prefWidth="228.0" style="-fx-background-color: #2F4978; -fx-background-radius: 8px;" text="Login" textFill="WHITE">
+            <Button fx:id="loginButton" layoutX="81.0" layoutY="254.0" mnemonicParsing="false" onAction="#loginAction" onMouseEntered="#changeLogin" onMouseExited="#backLogin" prefHeight="30.0" prefWidth="228.0" style="-fx-background-color: #2F4978; -fx-background-radius: 8px;" text="Login" textFill="WHITE">
                <font>
                   <Font name="Open Sans Semibold" size="14.0" />
                </font></Button>
             <TextField fx:id="senhaMostrada" layoutX="61.0" layoutY="244.0" promptText="Senha" style="-fx-background-radius: 20px;" visible="false" />
-            <Button fx:id="signinButton" layoutX="82.0" layoutY="290.0" mnemonicParsing="false" onAction="#registrar" onMouseEntered="#mudarCursor" onMouseExited="#voltarCursor" prefHeight="30.0" prefWidth="228.0" style="-fx-background-radius: 8px; -fx-border-radius: 8px; -fx-background-color: #b5b5b5;" text="Sign in">
+            <Button fx:id="signinButton" layoutX="82.0" layoutY="290.0" mnemonicParsing="false" onAction="#registrar" onMouseEntered="#changeSignIn" onMouseExited="#backSignIn" prefHeight="30.0" prefWidth="228.0" style="-fx-background-radius: 8px; -fx-border-radius: 8px; -fx-background-color: #b5b5b5;" text="Sign in">
                <font>
                   <Font name="Open Sans Semibold" size="14.0" />
                </font>

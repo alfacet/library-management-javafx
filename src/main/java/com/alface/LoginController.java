@@ -1,11 +1,9 @@
 package com.alface;
 
 import java.io.File;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import org.bson.Document;
-import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.FindIterable;
@@ -17,29 +15,30 @@ import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 public class LoginController {
     @FXML VBox tela;
     @FXML CheckBox mostrar;
     @FXML PasswordField inputSenha;
     @FXML TextField senhaMostrada;
-    @FXML TextField inputNome;
-    @FXML Label messageLogin;
+    @FXML TextField inputNome; 
+    @FXML Label messageLogin; 
     @FXML ImageView imagemTela;
     @FXML Button loginButton;
     @FXML Label showPassword;
     @FXML TextField inputShownPassword;
-    @FXML ImageView alertImg;
+    @FXML  ImageView alertImg;
+    @FXML Button signinButton;
 
     static MongoClient cliente = new MongoClient(
-        new MongoClientURI("mongodb+srv://root:NO@userdata.fhh1quh.mongodb.net/test"));
+            new MongoClientURI("mongodb+srv://root:NO@userdata.fhh1quh.mongodb.net/test"));
 
     static MongoDatabase banco = cliente.getDatabase("user_info");
     static Document dados = new Document();
     static MongoCollection colecao = banco.getCollection("data");
     static FindIterable<Document> it = colecao.find();
-    static MongoCursor m = it.iterator();
-    
+    static MongoCursor<Document> m = it.iterator();
 
     // Quando for colocar imagens, usa o path + o nome da imagem pra ficar mais
     // fácil c:
@@ -70,58 +69,93 @@ public class LoginController {
         tela.setCursor(Cursor.DEFAULT);
     }
 
-    public boolean naoExisteNome() {    
-        MongoCursor m = it.iterator();
-        Document a;     
-
+    public boolean nomeEstaEmUso() {
+        Document a;
         while (m.hasNext()) {
-            a = (Document) m.next();
+            a = m.next();
+            if (a.get("username").toString().equals(inputNome.getText()))
+                return true;
 
-            if (a.get("username").toString().equals(inputNome.getText()));
-                return false;
         }
-
-        return true;
+        
+        return false;
     }
 
     @FXML
     public void registrar() {
         try {
             String senha = (inputSenha.isVisible()) ? inputSenha.getText() : inputShownPassword.getText();
-            if (naoExisteNome()) {
-                dados.append("username", inputNome.getText());
-                dados.append("password", senha);
-                banco.getCollection("data").insertOne(dados);
-                messageLogin.setText("Signed up!");
-                alertImg.setVisible(false);
-                System.out.println("deu bom");
-            }
-
-            else {
+           
+            if (nomeEstaEmUso()) {
                 messageLogin.setText("This username already exists!");
                 alertImg.setVisible(true);
             }
-            
+
+            else {
+                dados.append("username", inputNome.getText());
+                dados.append("password", senha);
+                banco.getCollection("data").insertOne(dados);
+                App.setUser(inputNome.getText());
+                alertImg.setVisible(false);
+                System.out.println("deu bom");
+                App.setRoot("home_page");
+            }
 
         } catch (Exception e) {
-            System.out.println("fudeu");
+            System.out.println(e);
+            messageLogin.setText("This username already exists!");
+            alertImg.setVisible(true);
         }
     }
 
     @FXML
     public void loginAction() {
-        try {
-            Document a;     
+        if (inputNome.getText().isBlank() && inputSenha.getText().isBlank()) {
+            messageLogin.setText("The name and password fields cannot be empty!");
+            alertImg.setVisible(true);
+        }
 
-            while(m.hasNext()) {
-                a = (Document) m.next();
-                System.out.println(a.get("username"));
+        else if (inputSenha.getText().isBlank()) {
+            messageLogin.setText("The password field cannot be empty!");
+            alertImg.setVisible(true);
+        }
+
+        else if (inputNome.getText().isBlank()) {
+            messageLogin.setText("The name field cannot be empty!");
+            alertImg.setVisible(true);
+        }
+
+        else {
+            try {
+                String senha = (inputSenha.isVisible()) ? inputSenha.getText() : inputShownPassword.getText();
+                Document a;
+
+                while (m.hasNext()) {
+                    a = m.next();
+
+                    if (a.get("username").toString().equals(inputNome.getText())) {
+                        if (a.get("password").toString().equals(senha)) {
+                            App.setUser(inputNome.getText());
+                            App.setRoot("home_page");
+                        } else {
+                            messageLogin.setText("Invalid password!");
+                            alertImg.setVisible(true);
+                        }
+                    } //else {
+                    //     for (int index = 0; index < 5; index++) {
+                    //         System.out.println();
+                    //     }
+                    //     System.out.println("nome no banco: " + a.get("username"));
+                    //     System.out.println("Nome na input: " + inputNome.getText());
+                    //     for (int index = 0; index < 5; index++) {
+                    //         System.out.println();
+                    //     }
+                    // }
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+                System.out.println("Impossible to connect!");
             }
-
-        } catch (Exception e) {
-            System.out.println("Impossible to connect!");
-        } finally {
-            m.close();
         }
     }
 
@@ -150,5 +184,32 @@ public class LoginController {
     @FXML
     public void backToCursor() {
         tela.setCursor(Cursor.DEFAULT);
+    }
+    
+    @FXML
+    public void changeLogin() {
+        tela.setCursor(Cursor.HAND);
+        loginButton.setStyle("-fx-background-color: #3F508B;-fx-background-radius: 8px;");
+    }
+//  #2F4978
+    @FXML
+    public void changeSignIn()
+    {
+        tela.setCursor(Cursor.HAND);
+        signinButton.setStyle("-fx-background-color: gray; -fx-background-radius: 8px;");
+        // signinButton.
+        // signinButton.setStyle("-fx-background-radius: 8px;");
+    }
+
+    @FXML
+    public void backLogin() {
+        tela.setCursor(Cursor.DEFAULT);
+        loginButton.setStyle("-fx-background-color: #2F4978;-fx-background-radius: 8px;");
+    }
+
+    @FXML
+    public void backSignIn() {
+        tela.setCursor(Cursor.DEFAULT);
+        signinButton.setStyle("-fx-background-color: #b5b5b5;-fx-background-radius: 8px;");
     }
 }
