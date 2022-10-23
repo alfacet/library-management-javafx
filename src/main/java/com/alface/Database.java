@@ -4,25 +4,29 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
+import com.mongodb.MongoClient;
 
 public class Database {
-    public Connection database;
 
-    public Connection getConnection() {
-        String databaseName = "bomba";
-        String databaseUser = "root";
-        String databasePassword = "NO";
+    // public Connection database;
 
-        String url = "jdbc:mysql://localhost:3306/bomba";
+    // public Connection getConnection() {
+    //     String databaseName = "bomba";
+    //     String databaseUser = "root";
+    //     String databasePassword = "NO";
 
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            database = DriverManager.getConnection(url, databaseUser, databasePassword);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    //     String url = "jdbc:mysql://localhost:3306/bomba";
 
-        return database;
+    //     try {
+    //         Class.forName("com.mysql.cj.jdbc.Driver");
+    //         database = DriverManager.getConnection(url, databaseUser, databasePassword);
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //     }
 
-    }
+    //     return database;
+
+    // }
 }
