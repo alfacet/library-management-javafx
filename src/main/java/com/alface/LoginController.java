@@ -29,11 +29,11 @@ public class LoginController {
     @FXML TextField inputShownPassword;
     @FXML ImageView alertImg;
 
-    String path = "file:\\\\\\" + System.getProperty("user.dir") + "\\src\\main\\images\\bookcase.png";
+    //Quando for colocar imagens, usa o path + o nome da imagem pra ficar mais fácil c:
+    String path = "file:\\\\\\" + System.getProperty("user.dir") + "\\src\\main\\images\\";
 
-    final Image IMG_MINE = new Image(path);
-    final Image IMG_ALERT = new Image(
-            "file:\\\\\\" + System.getProperty("user.dir") + "\\src\\main\\images\\alert_icon.png");
+    final Image IMG_MINE = new Image(path + "bookcase.png");
+    final Image IMG_ALERT = new Image(path + "alert_icon.png");
 
     @FXML
     public void initialize() {
