@@ -54,7 +54,7 @@
                   <Font name="Open Sans Semibold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="messageLogin" alignment="CENTER" layoutX="83.0" layoutY="320.0" prefHeight="20.0" prefWidth="228.0" textFill="#890d0e">
+            <Label fx:id="messageLogin" alignment="CENTER" layoutX="65.0" layoutY="320.0" prefHeight="20.0" prefWidth="263.0" textFill="#890d0e">
                <font>
                   <Font name="Open Sans Semibold" size="10.0" />
                </font>
