@@ -42,6 +42,8 @@ public class LoginController {
 
     @FXML
     public void display() {
+        
+        
         imagemTela.setImage(IMG_MINE);
         alertImg.setImage(IMG_ALERT);
     }
@@ -120,7 +122,7 @@ public class LoginController {
             while (result.next()) {
                 if (result.getInt(1) == 1) {
                     App.setUser(inputNome.getText());
-                    App.setRoot("secondary");
+                    App.setRoot("home_page");
                 } else {
                     messageLogin.setText("bruh");
                     messageLogin.setVisible(true);

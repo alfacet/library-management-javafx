@@ -11,15 +11,15 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="tela" alignment="CENTER" prefHeight="364.0" prefWidth="489.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alface.SecondaryController">
+<VBox fx:id="tela" alignment="CENTER" prefHeight="364.0" prefWidth="489.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alface.HomePageController">
     <children>
       <AnchorPane prefHeight="389.0" prefWidth="559.0">
          <children>
             <Circle fx:id="circulo2" fill="#d2d7dc" layoutX="226.0" layoutY="205.0" onMouseEntered="#mudarCursor" onMouseExited="#voltarCursor" opacity="0.5" radius="28.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" />
             <Circle fx:id="circulo1" fill="#d2d7dc" layoutX="92.0" layoutY="205.0" onMouseEntered="#mudarCursor" onMouseExited="#voltarCursor" opacity="0.5" radius="28.0" stroke="#402f2f" strokeType="INSIDE" strokeWidth="2.0" />
-              <Label fx:id="titulo" layoutX="13.0" layoutY="23.0" text="Secondary View" textFill="#81cd9d">
+              <Label fx:id="titulo" layoutX="10.0" layoutY="21.0" text="Secondary View" textFill="#81cd9d">
                <font>
-                  <Font name="Comic Sans MS Bold" size="28.0" />
+                  <Font name="Open Sans Bold" size="28.0" />
                </font>
             </Label>
               <Button fx:id="secondaryButton" layoutX="153.0" layoutY="291.0" onAction="#switchToPrimary" onMouseEntered="#mudarCursor" onMouseExited="#voltarCursor" prefHeight="38.0" prefWidth="130.0" style="-fx-background-color: #81cd9d; -fx-background-radius: 20px;" text="Desconectar" textFill="WHITE">
@@ -42,7 +42,7 @@
                   <Font name="Comic Sans MS Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="titulo2" layoutX="105.0" layoutY="110.0" text="O que você deseja fazer?" textFill="#707673">
+            <Label fx:id="titulo2" layoutX="105.0" layoutY="106.0" text="O que você deseja fazer?" textFill="#707673">
                <font>
                   <Font name="Comic Sans MS Bold" size="18.0" />
                </font>
@@ -52,7 +52,6 @@
                   <Image url="@../../../../../../../../../Users/natha/OneDrive/Imagens/iiNqJH9G_400x400.jpg" />
                </image>
             </ImageView>
-            <Line endX="140.39996337890625" endY="7.62939453125E-6" fill="#439160" layoutX="115.0" layoutY="71.0" startX="-100.0" stroke="#5e5e59" strokeWidth="2.0" />
             <Circle fx:id="circulo3" fill="#d2d7dc" layoutX="378.0" layoutY="206.0" onMouseEntered="#mudarCursor" onMouseExited="#voltarCursor" opacity="0.5" radius="28.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" />
             <ImageView fx:id="imagemEstatisticas" fitHeight="39.0" fitWidth="39.0" layoutX="358.0" layoutY="188.0" onMouseEntered="#mudarCursor" onMouseExited="#voltarCursor" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -64,6 +63,7 @@
                   <Font name="Comic Sans MS Bold" size="14.0" />
                </font>
             </Label>
+            <Line endX="130.39996337890625" endY="-1.52587890625E-5" layoutX="120.0" layoutY="72.0" startX="-100.0" stroke="#8c8585" strokeWidth="2.0" />
          </children>
       </AnchorPane>
     </children>

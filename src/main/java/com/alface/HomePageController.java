@@ -9,7 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 
-public class SecondaryController {
+public class HomePageController {
 
     final Image IMG_LIVRO_ICON = new Image("https://cdn-icons-png.flaticon.com/512/926/926321.png");
     final Image IMG_ADD_ICON = new Image("https://cdn-icons-png.flaticon.com/512/148/148781.png");
