@@ -15,8 +15,8 @@
     <children>
       <AnchorPane prefHeight="342.0" prefWidth="459.0">
          <children>
-            <Circle fx:id="circulo111" fill="#d2d7dc" layoutX="434.0" layoutY="207.0" onMouseEntered="#mudarCursor" onMouseExited="#voltarCursor" opacity="0.5" radius="35.0" stroke="#402f2f" strokeType="INSIDE" strokeWidth="2.0" />
-              <Label fx:id="titulo" layoutX="21.0" layoutY="22.0" prefHeight="40.0" prefWidth="231.0" text="Secondary view" textFill="#2f4978">
+            <Circle fill="#d2d7dc" layoutX="434.0" layoutY="207.0" onMouseEntered="#mudarCursor" onMouseExited="#voltarCursor" opacity="0.5" radius="35.0" stroke="#402f2f" strokeType="INSIDE" strokeWidth="2.0" />
+              <Label fx:id="titulo" layoutX="21.0" layoutY="22.0" prefHeight="40.0" prefWidth="482.0" text="Secondary view" textFill="#2f4978">
                <font>
                   <Font name="Open Sans Bold" size="28.0" />
                </font>
@@ -26,12 +26,12 @@
                   <Font name="Open Sans Extrabold" size="16.0" />
                </font>
             </Button>
-            <Label fx:id="titulo1" layoutX="58.0" layoutY="246.0" prefHeight="16.0" prefWidth="116.0" text="View books">
+            <Label layoutX="58.0" layoutY="246.0" prefHeight="16.0" prefWidth="116.0" text="View books">
                <font>
                   <Font name="Open Sans Italic" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="titulo11" layoutX="232.0" layoutY="246.0" text="Add a book">
+            <Label layoutX="232.0" layoutY="246.0" text="Add a book">
                <font>
                   <Font name="Open Sans Italic" size="14.0" />
                </font>
@@ -46,23 +46,23 @@
                   <Image url="@../../../../../../../../../Users/natha/OneDrive/Imagens/iiNqJH9G_400x400.jpg" />
                </image>
             </ImageView>
-            <Label fx:id="titulo111" layoutX="393.0" layoutY="246.0" prefHeight="20.0" prefWidth="83.0" text="See statistics">
+            <Label layoutX="393.0" layoutY="246.0" prefHeight="20.0" prefWidth="83.0" text="See statistics">
                <font>
                   <Font name="Open Sans Italic" size="14.0" />
                </font>
             </Label>
             <Line endX="106.0" layoutX="125.0" layoutY="62.0" startX="-100.0" stroke="#8c8585" strokeWidth="2.0" />
             <Line endX="-33.0" layoutX="125.0" layoutY="72.0" startX="-100.0" stroke="#8c8585" strokeWidth="2.0" />
-            <Circle fx:id="circulo1111" fill="#d2d7dc" layoutX="267.0" layoutY="205.0" onMouseEntered="#mudarCursor" onMouseExited="#voltarCursor" opacity="0.5" radius="35.0" stroke="#402f2f" strokeType="INSIDE" strokeWidth="2.0" />
-            <ImageView fx:id="imagemEstatisticas1" fitHeight="56.0" fitWidth="53.0" layoutX="240.0" layoutY="178.0" onMouseEntered="#mudarCursor" onMouseExited="#voltarCursor" pickOnBounds="true" preserveRatio="true">
+            <Circle fill="#d2d7dc" layoutX="267.0" layoutY="205.0" onMouseEntered="#mudarCursor" onMouseExited="#voltarCursor" opacity="0.5" radius="35.0" stroke="#402f2f" strokeType="INSIDE" strokeWidth="2.0" />
+            <ImageView fx:id="imagemAddLivro" fitHeight="56.0" fitWidth="53.0" layoutX="240.0" layoutY="178.0" onMouseEntered="#mudarCursor" onMouseExited="#voltarCursor" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../Users/natha/OneDrive/Imagens/iiNqJH9G_400x400.jpg" />
                </image>
             </ImageView>
-            <Circle fx:id="circulo11111" fill="#d2d7dc" layoutX="93.0" layoutY="206.0" onMouseEntered="#mudarCursor" onMouseExited="#voltarCursor" opacity="0.5" radius="35.0" stroke="#402f2f" strokeType="INSIDE" strokeWidth="2.0" />
-            <ImageView fx:id="imagemEstatisticas11" fitHeight="56.0" fitWidth="53.0" layoutX="66.0" layoutY="179.0" onMouseEntered="#mudarCursor" onMouseExited="#voltarCursor" pickOnBounds="true" preserveRatio="true">
+            <Circle fill="#d2d7dc" layoutX="93.0" layoutY="206.0" onMouseEntered="#mudarCursor" onMouseExited="#voltarCursor" opacity="0.5" radius="35.0" stroke="#402f2f" strokeType="INSIDE" strokeWidth="2.0" />
+            <ImageView fx:id="imagemVerLivros" fitHeight="70.0" fitWidth="95.0" layoutX="46.0" layoutY="179.0" onMouseEntered="#mudarCursor" onMouseExited="#voltarCursor" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../Users/natha/OneDrive/Imagens/iiNqJH9G_400x400.jpg" />
+                  <Image url="@../../../../../../../../../Downloads/imgBook.png" />
                </image>
             </ImageView>
          </children>

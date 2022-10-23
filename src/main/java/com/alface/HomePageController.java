@@ -30,8 +30,7 @@ public class HomePageController {
     @FXML ImageView imagemAddLivro;
     @FXML ImageView imagemEstatisticas;
     @FXML VBox tela;
-    @FXML Circle circulo1;
-    
+
     public void initialize() {
         String message = "";
          
