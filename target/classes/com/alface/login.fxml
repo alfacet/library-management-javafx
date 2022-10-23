@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="tela" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="565.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alface.LoginController">
+<VBox fx:id="tela" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="381.0" prefWidth="573.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alface.LoginController">
    <children>
-      <AnchorPane prefHeight="343.0" prefWidth="560.0" style="-fx-background-color: white;">
+      <AnchorPane prefHeight="392.0" prefWidth="591.0" style="-fx-background-color: white;">
          <children>
             <Label layoutX="143.0" layoutY="20.0" text="Welcome!" textFill="#2f4978">
                <font>
@@ -20,17 +20,17 @@
                </font></Label>
             <TextField fx:id="inputNome" layoutX="81.0" layoutY="116.0" prefHeight="30.0" prefWidth="228.0" promptText="Enter your username" style="-fx-background-radius: 5px;" />
             <PasswordField fx:id="inputSenha" layoutX="81.0" layoutY="172.0" prefHeight="30.0" prefWidth="228.0" promptText="Enter your password" style="-fx-background-radius: 5px;" />
-            <Button fx:id="loginButton" layoutX="82.0" layoutY="242.0" mnemonicParsing="false" onAction="#loginAction" onMouseEntered="#mudarCursor" onMouseExited="#voltarCursor" prefHeight="30.0" prefWidth="228.0" style="-fx-background-color: #2F4978; -fx-background-radius: 8px;" text="Login" textFill="WHITE">
+            <Button fx:id="loginButton" layoutX="81.0" layoutY="254.0" mnemonicParsing="false" onAction="#loginAction" onMouseEntered="#mudarCursor" onMouseExited="#voltarCursor" prefHeight="30.0" prefWidth="228.0" style="-fx-background-color: #2F4978; -fx-background-radius: 8px;" text="Login" textFill="WHITE">
                <font>
                   <Font name="Open Sans Semibold" size="14.0" />
                </font></Button>
             <TextField fx:id="senhaMostrada" layoutX="61.0" layoutY="244.0" promptText="Senha" style="-fx-background-radius: 20px;" visible="false" />
-            <Button fx:id="signinButton" layoutX="82.0" layoutY="278.0" mnemonicParsing="false" onAction="#registrar" onMouseEntered="#mudarCursor" onMouseExited="#voltarCursor" prefHeight="30.0" prefWidth="228.0" style="-fx-background-radius: 8px; -fx-border-radius: 8px; -fx-background-color: #b5b5b5;" text="Sign in">
+            <Button fx:id="signinButton" layoutX="82.0" layoutY="290.0" mnemonicParsing="false" onAction="#registrar" onMouseEntered="#mudarCursor" onMouseExited="#voltarCursor" prefHeight="30.0" prefWidth="228.0" style="-fx-background-radius: 8px; -fx-border-radius: 8px; -fx-background-color: #b5b5b5;" text="Sign in">
                <font>
                   <Font name="Open Sans Semibold" size="14.0" />
                </font>
             </Button>
-            <ImageView fx:id="imagemTela" fitHeight="360.0" fitWidth="203.0" layoutX="362.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imagemTela" fitHeight="381.0" fitWidth="216.0" layoutX="363.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../images/bookcase.png" />
                </image>
@@ -49,18 +49,18 @@
                   <Font name="Open Sans Semibold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="showPassword" layoutX="155.0" layoutY="202.0" onMouseClicked="#showPasswordAction" onMouseEntered="#changeCursor" onMouseExited="#backToCursor" text="Show password" textFill="#b5b5b5">
+            <Label fx:id="showPassword" layoutX="155.0" layoutY="209.0" onMouseClicked="#showPasswordAction" onMouseEntered="#changeCursor" onMouseExited="#backToCursor" text="Show password" textFill="#b5b5b5">
                <font>
                   <Font name="Open Sans Semibold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="messageLogin" alignment="CENTER" layoutX="65.0" layoutY="320.0" prefHeight="20.0" prefWidth="263.0" textFill="#890d0e">
+            <Label fx:id="messageLogin" alignment="CENTER" layoutX="69.0" layoutY="331.0" prefHeight="20.0" prefWidth="263.0" textFill="#890d0e">
                <font>
                   <Font name="Open Sans Semibold" size="10.0" />
                </font>
             </Label>
             <TextField fx:id="inputShownPassword" layoutX="81.0" layoutY="172.0" prefHeight="30.0" prefWidth="228.0" promptText="Enter your password" style="-fx-background-radius: 5px;" visible="false" />
-            <ImageView fx:id="alertImg" fitHeight="25.0" fitWidth="28.0" layoutX="20.0" layoutY="318.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="alertImg" fitHeight="25.0" fitWidth="30.0" layoutX="14.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../../../images/alert_icon.png" />
                </image>
