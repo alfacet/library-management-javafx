@@ -31,15 +31,18 @@ public class LoginController {
     @FXML TextField inputShownPassword;
     @FXML  ImageView alertImg;
     @FXML Button signinButton;
-
-    static MongoClient cliente = new MongoClient(
+    
+    
+    
+    final MongoClient cliente = new MongoClient(
             new MongoClientURI("mongodb+srv://root:NO@userdata.fhh1quh.mongodb.net/test"));
 
-    static MongoDatabase banco = cliente.getDatabase("user_info");
-    static Document dados = new Document();
-    static MongoCollection colecao = banco.getCollection("data");
-    static FindIterable<Document> it = colecao.find();
-    static MongoCursor<Document> m = it.iterator();
+    final MongoDatabase banco = cliente.getDatabase("user_info");
+    final Document dados = new Document();
+    final MongoCollection colecao = banco.getCollection("data");
+    final FindIterable<Document> it = colecao.find();
+    final MongoCursor<Document> m = it.iterator();
+   
 
     // Quando for colocar imagens, usa o path + o nome da imagem pra ficar mais
     // fácil c:
@@ -72,6 +75,7 @@ public class LoginController {
 
     public boolean nomeEstaEmUso() {
         Document a;
+        
         while (m.hasNext()) {
             a = m.next();
             if (a.get("username").toString().equals(inputNome.getText()))
@@ -130,7 +134,9 @@ public class LoginController {
             try {
                 String senha = (inputSenha.isVisible()) ? inputSenha.getText() : inputShownPassword.getText();
                 Document a;
-
+                MongoCollection colecao = banco.getCollection("data");
+                FindIterable<Document> it = colecao.find();
+                MongoCursor<Document> m = it.iterator();
                 while (m.hasNext()) {
                     a = m.next();
 
@@ -140,6 +146,7 @@ public class LoginController {
                             App.setRoot("home_page");
                         } else {
                             messageLogin.setText("Invalid password!");
+                            System.out.println(senha);
                             alertImg.setVisible(true);
                         }
                     } //else {

@@ -19,7 +19,7 @@ public class App extends Application {
         stage.getIcons().add(new Image("https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/77/Enchanting_Table_JE4_BE2.png/revision/latest?cb=20200315175031"));
         stage.setResizable(false);
         stage.setScene(scene);
-        stage.setTitle("Gerenciador de livros épico com doge");
+        stage.setTitle("Epic book manager with doge :)");
         stage.show();
     }
 

@@ -82,4 +82,15 @@ public class HomePageController {
     public void voltarCursor() {
         tela.setCursor(Cursor.DEFAULT);
     }
+    @FXML
+    public void mudarPagina()
+    {
+        try {
+        App.setRoot("add_books");
+        }
+        catch(IOException e)
+        {
+            System.out.println(e);
+        }
+    }
 }
