@@ -17,6 +17,8 @@ import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import io.github.cdimascio.dotenv.Dotenv;
+import io.github.cdimascio.dotenv.DotenvEntry;
 
 public class LoginController extends BigController {
     @FXML VBox tela;
@@ -31,11 +33,15 @@ public class LoginController extends BigController {
     @FXML TextField inputShownPassword;
     @FXML  ImageView alertImg;
     @FXML Button signinButton;
-    
-    
+
+
+
+
+
     
     final MongoClient cliente = new MongoClient(
-            new MongoClientURI("mongodb+srv://alface:Hdq31P7jrn506fU9@userdata.fhh1quh.mongodb.net/test"));
+            new MongoClientURI("mongodb+srv://alface:RZmBDM6XIREBUZcG@userdata.fhh1quh.mongodb.net/test")
+        );
 
     final MongoDatabase banco = cliente.getDatabase("user_info");
     final Document dados = new Document();
