@@ -35,7 +35,7 @@ public class LoginController extends BigController {
     
     
     final MongoClient cliente = new MongoClient(
-            new MongoClientURI("mongodb+srv://root:NO@userdata.fhh1quh.mongodb.net/test"));
+            new MongoClientURI("mongodb+srv://root:pirugrosso@userdata.fhh1quh.mongodb.net/test"));
 
     final MongoDatabase banco = cliente.getDatabase("user_info");
     final Document dados = new Document();
