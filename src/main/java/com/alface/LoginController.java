@@ -18,7 +18,7 @@ import javafx.scene.image.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
-public class LoginController {
+public class LoginController extends BigController {
     @FXML VBox tela;
     @FXML CheckBox mostrar;
     @FXML PasswordField inputSenha;
@@ -44,12 +44,14 @@ public class LoginController {
     final MongoCursor<Document> m = it.iterator();
    
 
-    // Quando for colocar imagens, usa o path + o nome da imagem pra ficar mais
-    // fácil c:
-    String path = "file:\\\\\\" + System.getProperty("user.dir") + "\\src\\main\\images\\";
+    
+    final Image IMG_MINE = new Image(super.pathImages + "bookcase.png");
+    final Image IMG_ALERT = new Image(super.pathImages + "alert_icon.png");
 
-    final Image IMG_MINE = new Image(path + "bookcase.png");
-    final Image IMG_ALERT = new Image(path + "alert_icon.png");
+    public LoginController()
+    {
+        super();
+    }
 
     @FXML
     public void initialize() {

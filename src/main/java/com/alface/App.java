@@ -12,6 +12,8 @@ public class App extends Application {
     private static String user;
     private static Scene scene;
 
+    
+
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("login"));
@@ -32,6 +34,7 @@ public class App extends Application {
     }
 
     static void setRoot(String fxml) throws IOException {
+        //scene.getStylesheets().add(App.class.getClass().getResource(path + "AddBook.css").toExternalForm());
         scene.setRoot(loadFXML(fxml));
     }
 

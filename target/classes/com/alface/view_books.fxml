@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="392.0" prefWidth="591.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alface.ViewBooksController">
+   <children>
+      <AnchorPane prefHeight="397.0" prefWidth="600.0">
+         <children>
+            <ImageView fx:id="template" fitHeight="360.0" fitWidth="554.0" layoutX="9.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../Downloads/templ_inventory.png" />
+               </image>
+            </ImageView>
+            <ListView fx:id="listaLivros" layoutX="197.0" layoutY="53.0" prefHeight="234.0" prefWidth="354.0" />
+            <Label fx:id="labelErro" layoutX="218.0" layoutY="309.0" text="Label">
+               <font>
+                  <Font name="Open Sans Extrabold Italic" size="16.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="avatar" fitHeight="175.0" fitWidth="134.0" layoutX="61.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../Downloads/avatar_doge.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="473.0" layoutY="304.0" mnemonicParsing="false" style="-fx-background-color: #2f4978; -fx-border-radius: 50px; -fx-border-color: black; -fx-background-radius: 50px;" text="Home" textFill="WHITE">
+               <font>
+                  <Font name="Open Sans Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

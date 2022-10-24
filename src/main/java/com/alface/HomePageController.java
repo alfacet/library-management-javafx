@@ -4,23 +4,20 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 
-public class HomePageController {
-
-    String path = "file:\\\\\\" + System.getProperty("user.dir") + "\\src\\main\\images\\";
-
-    final Image IMG_LIVRO_ICON = new Image(path + "icon_book.png");
-    final Image IMG_ADD_ICON = new Image(path + "icon_add.png");
-    final Image IMG_STATS_ICON = new Image(path + "icon_stats.png");
-    
-
+public class HomePageController extends BigController {
+    final Image IMG_LIVRO_ICON = new Image(super.pathImages + "icon_book.png");
+    final Image IMG_ADD_ICON = new Image(super.pathImages + "icon_add.png");
+    final Image IMG_STATS_ICON = new Image(super.pathImages + "icon_stats.png");
 
     static Date dataAtual = new Date();
 
@@ -30,11 +27,53 @@ public class HomePageController {
     @FXML ImageView imagemAddLivro;
     @FXML ImageView imagemEstatisticas;
     @FXML VBox tela;
+    @FXML Circle circle1;
+    @FXML Circle circle2;
+    @FXML Circle circle3;
+
+    public HomePageController() {
+        super();
+    }
 
     public void initialize() {
         String message = "";
-         
         
+        circle1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                changeCircleScale("circle1");
+            }
+        });
+        
+        circle2.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                changeCircleScale("circle2");
+            }
+        });
+
+        circle3.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                changeCircleScale("circle3");
+            }
+        });
+
+        circle1.setOnMouseExited(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                backChangeCircleScale("circle1");
+            }
+        });
+
+        circle2.setOnMouseExited(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                backChangeCircleScale("circle2");
+            }
+        });
+
+        circle3.setOnMouseExited(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                backChangeCircleScale("circle3");
+            }
+        });
+
         switch (dataAtual.getHours()) {
             case 5:
             case 6:
@@ -62,6 +101,7 @@ public class HomePageController {
             case 4: message += "Good evening, "; break;
             
         }
+
         titulo.setText(message + " " + App.getUser() + "!");
         imagemVerLivros.setImage(IMG_LIVRO_ICON);
         imagemAddLivro.setImage(IMG_ADD_ICON);
@@ -82,15 +122,42 @@ public class HomePageController {
     public void voltarCursor() {
         tela.setCursor(Cursor.DEFAULT);
     }
+
     @FXML
-    public void mudarPagina()
-    {
+    public void mudarPagina() {
         try {
-        App.setRoot("add_books");
-        }
-        catch(IOException e)
-        {
+            App.setRoot("view_books");
+        } catch(IOException e) {
             System.out.println(e);
+        }
+    }
+
+    // @FXML Circle circle1;
+    // @FXML Circle circle2;
+    // @FXML Circle circle3;
+    
+    @FXML 
+    public void changeCircleScale(String input) {
+        if (input.equals("circle1"))
+            circle1.setStyle("-fx-scale-x: 1.15; -fx-scale-y: 1.15; -fx-scale-z: 1.15");
+            
+        else if (input.equals("circle2"))
+            circle2.setStyle("-fx-scale-x: 1.15; -fx-scale-y: 1.15; -fx-scale-z: 1.15"); 
+            
+        else circle3.setStyle("-fx-scale-x: 1.15; -fx-scale-y: 1.15; -fx-scale-z: 1.15");  
+    }
+
+    @FXML 
+    public void backChangeCircleScale(String inputString) {
+        switch(inputString) {
+            case "circle1": circle1.setStyle("-fx-scale-x: 1; -fx-scale-y: 1; -fx-scale-z: 1");
+                break;
+
+            case "circle2": circle2.setStyle("-fx-scale-x: 1; -fx-scale-y: 1; -fx-scale-z: 1");
+                break;
+
+            case "circle3": circle3.setStyle("-fx-scale-x: 1; -fx-scale-y: 1; -fx-scale-z: 1");
+                break;
         }
     }
 }
