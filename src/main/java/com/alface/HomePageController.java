@@ -37,43 +37,7 @@ public class HomePageController extends BigController {
 
     public void initialize() {
         String message = "";
-        
-        circle1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent event) {
-                changeCircleScale("circle1");
-            }
-        });
-        
-        circle2.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent event) {
-                changeCircleScale("circle2");
-            }
-        });
-
-        circle3.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent event) {
-                changeCircleScale("circle3");
-            }
-        });
-
-        circle1.setOnMouseExited(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent event) {
-                backChangeCircleScale("circle1");
-            }
-        });
-
-        circle2.setOnMouseExited(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent event) {
-                backChangeCircleScale("circle2");
-            }
-        });
-
-        circle3.setOnMouseExited(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent event) {
-                backChangeCircleScale("circle3");
-            }
-        });
-
+    
         switch (dataAtual.getHours()) {
             case 5:
             case 6:
@@ -131,33 +95,36 @@ public class HomePageController extends BigController {
             System.out.println(e);
         }
     }
-
-    // @FXML Circle circle1;
-    // @FXML Circle circle2;
-    // @FXML Circle circle3;
     
     @FXML 
-    public void changeCircleScale(String input) {
-        if (input.equals("circle1"))
-            circle1.setStyle("-fx-scale-x: 1.15; -fx-scale-y: 1.15; -fx-scale-z: 1.15");
-            
-        else if (input.equals("circle2"))
-            circle2.setStyle("-fx-scale-x: 1.15; -fx-scale-y: 1.15; -fx-scale-z: 1.15"); 
-            
-        else circle3.setStyle("-fx-scale-x: 1.15; -fx-scale-y: 1.15; -fx-scale-z: 1.15");  
+    public void changeCircle1Scale() {
+        tela.setCursor(Cursor.HAND);
+        circle1.setStyle("-fx-scale-x: 1.15; -fx-scale-y: 1.15; -fx-scale-z: 1.15");
     }
-
+    @FXML
+    public void changeCircle2Scale() {
+        tela.setCursor(Cursor.HAND);
+        circle2.setStyle("-fx-scale-x: 1.15; -fx-scale-y: 1.15; -fx-scale-z: 1.15");
+    }
+    @FXML
+    public void changeCircle3Scale() {
+        tela.setCursor(Cursor.HAND);
+        circle3.setStyle("-fx-scale-x: 1.15; -fx-scale-y: 1.15; -fx-scale-z: 1.15");
+    }
     @FXML 
-    public void backChangeCircleScale(String inputString) {
-        switch(inputString) {
-            case "circle1": circle1.setStyle("-fx-scale-x: 1; -fx-scale-y: 1; -fx-scale-z: 1");
-                break;
-
-            case "circle2": circle2.setStyle("-fx-scale-x: 1; -fx-scale-y: 1; -fx-scale-z: 1");
-                break;
-
-            case "circle3": circle3.setStyle("-fx-scale-x: 1; -fx-scale-y: 1; -fx-scale-z: 1");
-                break;
-        }
+    public void backChangeCircle1Scale() {
+        tela.setCursor(Cursor.DEFAULT);
+        circle1.setStyle("-fx-scale-x: 1; -fx-scale-y: 1; -fx-scale-z: 1");
     }
+    @FXML 
+    public void backChangeCircle2Scale() {
+        tela.setCursor(Cursor.DEFAULT);
+        circle2.setStyle("-fx-scale-x: 1; -fx-scale-y: 1; -fx-scale-z: 1");
+    }
+    @FXML 
+    public void backChangeCircle3Scale() {
+        tela.setCursor(Cursor.DEFAULT);
+        circle3.setStyle("-fx-scale-x: 1; -fx-scale-y: 1; -fx-scale-z: 1");
+    }
+
 }

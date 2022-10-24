@@ -90,15 +90,34 @@ public class LoginController extends BigController {
 
     @FXML
     public void registrar() {
+        boolean err = true;
         try {
             String senha = (inputSenha.isVisible()) ? inputSenha.getText() : inputShownPassword.getText();
-           
-            if (nomeEstaEmUso()) {
-                messageLogin.setText("This username already exists!");
+            if(senha.equals("") && inputNome.getText().equals(""))
+            {
+                messageLogin.setText("The name and password fields cannot be empty!");
+                alertImg.setVisible(true);
+            }
+            else if(senha.equals(""))
+            {
+                messageLogin.setText("The password field cannot be empty!");
                 alertImg.setVisible(true);
             }
 
-            else {
+            else if(inputNome.getText().equals(""))
+            {
+                messageLogin.setText("The name field cannot be empty!");
+                alertImg.setVisible(true);  
+            }
+            else if (nomeEstaEmUso()) {
+                messageLogin.setText("This username already exists!");
+                alertImg.setVisible(true);
+            }
+            else 
+                err = false;
+            
+            if(!err)
+            {
                 dados.append("username", inputNome.getText());
                 dados.append("password", senha);
                 banco.getCollection("data").insertOne(dados);
@@ -107,7 +126,7 @@ public class LoginController extends BigController {
                 System.out.println("deu bom");
                 App.setRoot("home_page");
             }
-
+            
         } catch (Exception e) {
             System.out.println(e);
             messageLogin.setText("This username already exists!");

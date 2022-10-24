@@ -1,6 +1,7 @@
 package com.alface;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
@@ -75,5 +76,15 @@ public class ViewBooksController extends BigController {
         }
 
         else labelErro.setVisible(false);
+    }
+    public void voltarPraHome()
+    {
+        try {
+        App.setRoot("home_page");
+        }
+        catch(IOException e)
+        {
+            System.out.println(e);
+        }
     }
 }

@@ -29,7 +29,7 @@
                   <Image url="@../../../../../../../../../Downloads/avatar_doge.png" />
                </image>
             </ImageView>
-            <Button layoutX="473.0" layoutY="304.0" mnemonicParsing="false" style="-fx-background-color: #2f4978; -fx-border-radius: 50px; -fx-border-color: black; -fx-background-radius: 50px;" text="Home" textFill="WHITE">
+            <Button layoutX="473.0" layoutY="304.0" mnemonicParsing="false" onAction="#voltarPraHome" style="-fx-background-color: #2f4978; -fx-border-radius: 50px; -fx-border-color: black; -fx-background-radius: 50px;" text="Home" textFill="WHITE">
                <font>
                   <Font name="Open Sans Bold" size="15.0" />
                </font>
