@@ -7,12 +7,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.image.*;
 import javafx.stage.Stage;
+import io.github.cdimascio.dotenv.Dotenv;
+import io.github.cdimascio.dotenv.DotenvEntry;
 
 public class App extends Application {
     private static String user;
     private static Scene scene;
-
-    
 
     @Override
     public void start(Stage stage) throws IOException {

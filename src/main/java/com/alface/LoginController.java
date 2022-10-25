@@ -34,14 +34,18 @@ public class LoginController extends BigController {
     @FXML  ImageView alertImg;
     @FXML Button signinButton;
 
+    Dotenv dotenv = Dotenv.configure()
+    .directory("./.env")
+    .ignoreIfMalformed()
+    .ignoreIfMissing()
+    .load();
 
 
-
-
-    
     final MongoClient cliente = new MongoClient(
-            new MongoClientURI("mongodb+srv://alface:RZmBDM6XIREBUZcG@userdata.fhh1quh.mongodb.net/test")
+            new MongoClientURI(dotenv.get("MONGODB_URI"))
         );
+
+        
 
     final MongoDatabase banco = cliente.getDatabase("user_info");
     final Document dados = new Document();
@@ -54,8 +58,8 @@ public class LoginController extends BigController {
     final Image IMG_MINE = new Image(super.pathImages + "bookcase.png");
     final Image IMG_ALERT = new Image(super.pathImages + "alert_icon.png");
 
-    public LoginController()
-    {
+
+    public LoginController() {
         super();
     }
 
@@ -99,31 +103,29 @@ public class LoginController extends BigController {
         boolean err = true;
         try {
             String senha = (inputSenha.isVisible()) ? inputSenha.getText() : inputShownPassword.getText();
-            if(senha.equals("") && inputNome.getText().equals(""))
-            {
+            if(senha.equals("") && inputNome.getText().equals("")) {
                 messageLogin.setText("The name and password fields cannot be empty!");
                 alertImg.setVisible(true);
             }
-            else if(senha.equals(""))
-            {
+            
+            else if(senha.equals("")) {
                 messageLogin.setText("The password field cannot be empty!");
                 alertImg.setVisible(true);
             }
 
-            else if(inputNome.getText().equals(""))
-            {
+            else if(inputNome.getText().equals("")) {
                 messageLogin.setText("The name field cannot be empty!");
                 alertImg.setVisible(true);  
             }
+
             else if (nomeEstaEmUso()) {
                 messageLogin.setText("This username already exists!");
                 alertImg.setVisible(true);
             }
-            else 
-                err = false;
+
+            else err = false;
             
-            if(!err)
-            {
+            if (!err) {
                 dados.append("username", inputNome.getText());
                 dados.append("password", senha);
                 banco.getCollection("data").insertOne(dados);
