@@ -4,12 +4,18 @@
     <groupId>com.alface</groupId>
     <artifactId>library-management</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <logger name="org.mongodb.driver" level="DEBUG"></logger>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.13.0</version>
+        </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>

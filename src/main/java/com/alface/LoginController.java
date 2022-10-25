@@ -19,6 +19,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import io.github.cdimascio.dotenv.Dotenv;
 import io.github.cdimascio.dotenv.DotenvEntry;
+import java.util.logging.Logger;
+
 
 public class LoginController extends BigController {
     @FXML VBox tela;
@@ -39,6 +41,7 @@ public class LoginController extends BigController {
     .ignoreIfMalformed()
     .ignoreIfMissing()
     .load();
+    
 
 
     final MongoClient cliente = new MongoClient(
@@ -66,11 +69,12 @@ public class LoginController extends BigController {
     @FXML
     public void initialize() {
         display();
+        System.setProperty("DEBUG.MONGO", "true");
+        System.setProperty("DB.TRACE", "true");
     }
 
     @FXML
     public void display() {
-
         imagemTela.setImage(IMG_MINE);
         alertImg.setImage(IMG_ALERT);
     }
@@ -90,9 +94,9 @@ public class LoginController extends BigController {
         
         while (m.hasNext()) {
             a = m.next();
+
             if (a.get("username").toString().equals(inputNome.getText()))
                 return true;
-
         }
         
         return false;
@@ -101,6 +105,7 @@ public class LoginController extends BigController {
     @FXML
     public void registrar() {
         boolean err = true;
+
         try {
             String senha = (inputSenha.isVisible()) ? inputSenha.getText() : inputShownPassword.getText();
             if(senha.equals("") && inputNome.getText().equals("")) {
@@ -136,7 +141,6 @@ public class LoginController extends BigController {
             }
             
         } catch (Exception e) {
-            System.out.println(e);
             messageLogin.setText("This username already exists!");
             alertImg.setVisible(true);
         }
@@ -162,10 +166,8 @@ public class LoginController extends BigController {
         else {
             try {
                 String senha = (inputSenha.isVisible()) ? inputSenha.getText() : inputShownPassword.getText();
-                Document a;
-                MongoCollection colecao = banco.getCollection("data");
-                FindIterable<Document> it = colecao.find();
-                MongoCursor<Document> m = it.iterator();
+                Document a;                
+
                 while (m.hasNext()) {
                     a = m.next();
 
@@ -190,7 +192,6 @@ public class LoginController extends BigController {
                     // }
                 }
             } catch (Exception e) {
-                System.out.println(e);
                 System.out.println("Impossible to connect!");
             }
         }
@@ -228,10 +229,10 @@ public class LoginController extends BigController {
         tela.setCursor(Cursor.HAND);
         loginButton.setStyle("-fx-background-color: #3F508B;-fx-background-radius: 8px;");
     }
+
 //  #2F4978
     @FXML
-    public void changeSignIn()
-    {
+    public void changeSignIn() {
         tela.setCursor(Cursor.HAND);
         signinButton.setStyle("-fx-background-color: gray; -fx-background-radius: 8px;");
         // signinButton.
