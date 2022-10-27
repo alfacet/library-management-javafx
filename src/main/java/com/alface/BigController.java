@@ -6,7 +6,4 @@ public class BigController {
     protected final String pathCss = "file:\\\\\\" + System.getProperty("user.dir") + "\\src\\main\\java\\css";
     protected final String pathImages = "file:\\\\\\" + System.getProperty("user.dir") + "\\src\\main\\images\\";
     
-    public BigController() {
-       
-    }
 }
