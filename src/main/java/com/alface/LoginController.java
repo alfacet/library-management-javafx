@@ -34,13 +34,14 @@ public class LoginController extends BigController {
     @FXML  ImageView alertImg;
     @FXML Button signinButton;
 
-
-
-
-
+    Dotenv dotenv = Dotenv.configure()
+        .directory("./.env")
+        .ignoreIfMalformed() // 
+        .ignoreIfMissing()
+        .load();
     
     final MongoClient cliente = new MongoClient(
-            new MongoClientURI("mongodb+srv://alface:RZmBDM6XIREBUZcG@userdata.fhh1quh.mongodb.net/test")
+            new MongoClientURI(dotenv.get("MONGO_URI"))
         );
 
     final MongoDatabase banco = cliente.getDatabase("user_info");
