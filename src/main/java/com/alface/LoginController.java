@@ -51,25 +51,24 @@ public class LoginController extends BigController {
     final MongoCursor<Document> m = it.iterator();
    
 
-    
-    final Image IMG_MINE = new Image(super.pathImages + "bookcase.png");
-    final Image IMG_ALERT = new Image(super.pathImages + "alert_icon.png");
+    final Image IMG_MINE = new Image(super.getPathImages() + "bookcase.png");
+    final Image IMG_ALERT = new Image(super.getPathImages() + "alert_icon.png");
 
-    public LoginController()
-    {
+    public LoginController() {
         super();
     }
 
     @FXML
     public void initialize() {
+        System.out.println(IMG_ALERT.getUrl());
         display();
     }
 
     @FXML
     public void display() {
-
-        imagemTela.setImage(IMG_MINE);
+        imagemTela.setImage(new Image(super.getPathImages() + "bookcase.png"));
         alertImg.setImage(IMG_ALERT);
+        imagemTela.setVisible(true);
     }
 
     @FXML

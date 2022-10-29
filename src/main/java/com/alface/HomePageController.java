@@ -15,9 +15,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 
 public class HomePageController extends BigController {
-    final Image IMG_LIVRO_ICON = new Image(super.pathImages + "icon_book.png");
-    final Image IMG_ADD_ICON = new Image(super.pathImages + "icon_add.png");
-    final Image IMG_STATS_ICON = new Image(super.pathImages + "icon_stats.png");
+    final Image IMG_LIVRO_ICON = new Image(super.getPathImages() + "icon_book.png");
+    final Image IMG_ADD_ICON = new Image(super.getPathImages() + "icon_add.png");
+    final Image IMG_STATS_ICON = new Image(super.getPathImages() + "icon_stats.png");
 
     static Date dataAtual = new Date();
 
