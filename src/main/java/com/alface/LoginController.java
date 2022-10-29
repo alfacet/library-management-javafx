@@ -1,10 +1,15 @@
 package com.alface;
 
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import org.bson.Document;
+
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.FindIterable;
@@ -19,6 +24,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import io.github.cdimascio.dotenv.Dotenv;
 import io.github.cdimascio.dotenv.DotenvEntry;
+import java.util.logging.Logger;
 
 public class LoginController extends BigController {
     @FXML
@@ -71,6 +77,7 @@ public class LoginController extends BigController {
     @FXML
     public void initialize() {
         display();
+        
         System.setProperty("DEBUG.MONGO", "true");
         System.setProperty("DB.TRACE", "true");
     }

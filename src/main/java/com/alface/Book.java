@@ -1,42 +1,167 @@
 package com.alface;
 
+import java.util.ArrayList;
+  
 public class Book {
-    protected String name;
-    protected String author;
-    protected int pages;
-    protected int readPages;
-
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
     
-    public String getAuthor() {
-        return author;
+    public String title;
+    public String subtitle;
+    public ArrayList<String> authors;
+    public String publisher;
+    public String publishedDate;
+    public String description;
+    public int pageCount;
+    public String thumbnail;
+    public String previewLink;
+    public String infoLink;
+    public String buyLink;
+  
+    public String getTitle() {
+        return title;
     }
-    public void setAuthor(String author) {
-        this.author = author;
+  
+    public void setTitle(String title) {
+        this.title = title;
     }
-    
-    public int getPages() {
-        return pages;
+  
+    public String getSubtitle() {
+        return subtitle;
     }
-    public void setPages(int pages) {
-        this.pages = pages;
+  
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
     }
-
-    public int getReadPages() {
-        return readPages;
+  
+    public ArrayList<String> getAuthors() {
+        return authors;
     }
-    public void setReadPages(int readPages) {
-        this.readPages = readPages;
+  
+    public void setAuthors(ArrayList<String> authors) {
+        this.authors = authors;
     }
-    public String getPercent()
+  
+    public String getPublisher() {
+        return publisher;
+    }
+  
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+  
+    public String getPublishedDate() {
+        return publishedDate;
+    }
+  
+    public void setPublishedDate(String publishedDate) {
+        this.publishedDate = publishedDate;
+    }
+  
+    public String getDescription() {
+        return description;
+    }
+  
+    public void setDescription(String description) {
+        this.description = description;
+    }
+  
+    public int getPageCount() {
+        return pageCount;
+    }
+  
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+      
+    public String getThumbnail() {
+        return thumbnail;
+    }
+  
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+  
+    public String getPreviewLink() {
+        return previewLink;
+    }
+  
+    public void setPreviewLink(String previewLink) {
+        this.previewLink = previewLink;
+    }
+  
+    public String getInfoLink() {
+        return infoLink;
+    }
+  
+    public void setInfoLink(String infoLink) {
+        this.infoLink = infoLink;
+    }
+  
+    public String getBuyLink() {
+        return buyLink;
+    }
+  
+    public void setBuyLink(String buyLink) {
+        this.buyLink = buyLink;
+    }
+    public Book(String title, int pages)
     {
-        double p = this.readPages / this.pages;
-        return (p * 100) + "%";
+        this.title = title;
+        this.pageCount = pages;
     }
-    
+    public Book(String title, String subtitle, ArrayList<String> authors, String publisher,
+                    String publishedDate, String description, int pageCount, String thumbnail, 
+                    String previewLink, String infoLink, String buyLink) {
+        this.title = title;
+        this.subtitle = subtitle;
+        this.authors = authors;
+        this.publisher = publisher;
+        this.publishedDate = publishedDate;
+        this.description = description;
+        this.pageCount = pageCount;
+        this.thumbnail = thumbnail;
+        this.previewLink = previewLink;
+        this.infoLink = infoLink;
+        this.buyLink = buyLink;
+    }
 }
+
+// public class Book {
+//     protected String name;
+//     protected String author;
+//     protected int pages;
+//     protected int readPages;
+
+//     public String getName() {
+//         return name;
+//     }
+//     public void setName(String name) {
+//         this.name = name;
+//     }
+    
+//     public String getAuthor() {
+//         return author;
+//     }
+//     public void setAuthor(String author) {
+//         this.author = author;
+//     }
+    
+//     public int getPages() {
+//         return pages;
+//     }
+//     public void setPages(int pages) {
+//         this.pages = pages;
+//     }
+
+//     public int getReadPages() {
+//         return readPages;
+//     }
+//     public void setReadPages(int readPages) {
+//         this.readPages = readPages;
+//     }
+//     public String getPercent()
+//     {
+//         double p = this.readPages / this.pages;
+//         return (p * 100) + "%";
+//     }
+    
+// }

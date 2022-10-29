@@ -126,5 +126,16 @@ public class HomePageController extends BigController {
         tela.setCursor(Cursor.DEFAULT);
         circle3.setStyle("-fx-scale-x: 1; -fx-scale-y: 1; -fx-scale-z: 1");
     }
+    @FXML
+    public void mudarPaginaAdd()
+    {
+        try {
+        App.setRoot("add_books");
+        }
+        catch(IOException e)
+        {
+            System.out.println(e);
+        }
+    }
 
 }

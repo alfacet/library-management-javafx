@@ -1,0 +1,9 @@
+{
+    "nome": "diegao",
+    "idade": 17,
+    "vizinho": {
+        "nome":"filipe",
+        "idade": 16
+    },
+    "tamanhoDaPeca": 174817
+}
