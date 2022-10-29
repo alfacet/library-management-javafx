@@ -64,8 +64,8 @@ public class ViewBooksController extends BigController {
 
     @FXML
     public void display() {
-        avatar.setImage(new Image(super.pathImages + "avatar_doge.png"));
-        template.setImage(new Image(super.pathImages + "templ_inventory.png"));
+        avatar.setImage(new Image(super.getPathImages() + "avatar_doge.png"));
+        template.setImage(new Image(super.getPathImages() + "templ_inventory.png"));
     }
 
     public void verificarLista() {
