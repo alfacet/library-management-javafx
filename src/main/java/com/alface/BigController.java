@@ -1,11 +1,14 @@
 package com.alface;
 
+import java.util.ArrayList;
+
 public class BigController {
     // Quando for colocar imagens, usa o path + o nome da imagem pra ficar mais
     // fácil c:
     private String pathCss;
     private String pathImages;
-
+    
+    private int bookIndex;
     public BigController() {
         setPath();
     }
@@ -38,4 +41,21 @@ public class BigController {
     public String getPathCss() {
         return this.pathCss;
     }
+    // public ArrayList<Book> getBooksList()
+    // {
+    //     return this.booksList;
+    // }
+    // public void setBooksList(ArrayList<Book> l)
+    // {
+    //     this.booksList = l;
+    // }
+
+    public int getBookIndex() {
+        return bookIndex;
+    }
+
+    public void setBookIndex(int bookIndex) {
+        this.bookIndex = bookIndex;
+    }
+
 }

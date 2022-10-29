@@ -103,10 +103,24 @@ public class Book {
     public void setBuyLink(String buyLink) {
         this.buyLink = buyLink;
     }
+    public Book(String title, int pages, String imagem, String desc)
+    {
+        this.title = title;
+        this.pageCount = pages;
+        this.thumbnail = imagem;
+        this.description = desc;
+    } 
+    public Book(String title, int pages, String imagem)
+    {
+        this.title = title;
+        this.pageCount = pages;
+        this.thumbnail = imagem;
+    }
     public Book(String title, int pages)
     {
         this.title = title;
         this.pageCount = pages;
+
     }
     public Book(String title, String subtitle, ArrayList<String> authors, String publisher,
                     String publishedDate, String description, int pageCount, String thumbnail, 

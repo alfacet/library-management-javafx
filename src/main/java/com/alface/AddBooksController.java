@@ -21,14 +21,16 @@ import com.google.gson.stream.JsonReader;
 import io.github.cdimascio.dotenv.Dotenv;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 public class AddBooksController extends BigController {
-
+    static ArrayList<Book> lista = new ArrayList<Book>();
     Dotenv dotenv = Dotenv.configure()
             .directory("./.env")
             .ignoreIfMalformed() //
@@ -53,7 +55,8 @@ public class AddBooksController extends BigController {
                 String pesquisa = inputBookName.getText();
                 pesquisa = pesquisa.replaceAll(" ", "%20");
                 URL link = new URL(
-                        "https://www.googleapis.com/books/v1/volumes?q=" + pesquisa + ":keyes" + dotenv.get("GOOGLE_API"));
+                        "https://www.googleapis.com/books/v1/volumes?q=" + pesquisa + ":keyes"
+                                + dotenv.get("GOOGLE_API"));
                 HttpURLConnection conexao = (HttpURLConnection) link.openConnection();
                 conexao.setRequestMethod("GET");
                 reader = new JsonReader(new InputStreamReader(conexao.getInputStream()));
@@ -63,16 +66,39 @@ public class AddBooksController extends BigController {
 
                 ObservableList<Label> lista2 = FXCollections.observableArrayList();
                 for (int i = 0; i < vetor.size(); i++) {
+                    int atual = i;
                     JsonObject temp = vetor.get(i).getAsJsonObject();
                     JsonObject info = temp.get("volumeInfo").getAsJsonObject();
-                    Book livro = new Book(info.get("title").toString(), 23);
-                    lista2.add(new Label(livro.getTitle()));
+        
+                    JsonObject imageLinks = info.get("imageLinks").getAsJsonObject();
+                    if (info.get("description") != null && imageLinks.get("smallThumbnail") != null)
+                        lista.add(new Book(info.get("title").toString(), 23, imageLinks.get("smallThumbnail").toString(), info.get("description").toString()));
+                    else
+                        lista.add(new Book(info.get("title").toString(), 23));
+                    
+                    Label adicionado = new Label(lista.get(i).getTitle());
+                    adicionado.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                        public void handle(MouseEvent event) {
+                            mudarPagina(atual);
+                        }
+                    });
+                    lista2.add(adicionado);
                 }
                 booksList.setItems(lista2);
             }
         } catch (Exception e) {
 
             System.out.println(e);
+        }
+    }
+
+    public void mudarPagina(int posicao) {
+        App.setBooksList(lista);
+        App.setBookIndex(posicao);
+        try {
+            App.setRoot("view_single_book");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

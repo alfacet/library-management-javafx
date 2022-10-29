@@ -1,6 +1,7 @@
 package com.alface;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,20 +14,42 @@ import io.github.cdimascio.dotenv.DotenvEntry;
 public class App extends Application {
     private static String user;
     private static Scene scene;
-
+    private static ArrayList<Book> booksList;
+    private static int bookIndex;
     @Override
     public void start(Stage stage) throws IOException {
-            scene = new Scene(loadFXML("login"));
+        try {
+                        scene = new Scene(loadFXML("login"));
             //..\..\..\images\book_login_page.png
             stage.getIcons().add(new Image("https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/77/Enchanting_Table_JE4_BE2.png/revision/latest?cb=20200315175031"));
             stage.setResizable(false);
             stage.setScene(scene);
             stage.setTitle("Epic book manager with doge :)");
             stage.show();
+        } catch (Exception e) {
+            System.out.println("Error to initialize :(");
+            e.printStackTrace();
+        }
+    }
+
+    static public ArrayList<Book> getBooksList() {
+        return booksList;
+    }
+
+    static public void setBooksList(ArrayList<Book> bl) {
+        booksList = bl;
     }
 
     static public void setUser(String u)  {
         user = u;
+    }
+
+    public static int getBookIndex() {
+        return bookIndex;
+    }
+
+    public static void setBookIndex(int bookIndex) {
+        App.bookIndex = bookIndex;
     }
 
     static public String getUser() {
