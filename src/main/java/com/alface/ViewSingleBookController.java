@@ -9,11 +9,20 @@ public class ViewSingleBookController extends BigController {
     @FXML Label descriptionLabel;
     @FXML Label bookTitle;
     @FXML ImageView coverImage;
+    @FXML Label bookPages;
 
     public ViewSingleBookController() {
         super();
     }
     
+    public String tiraAspas(String x) {
+        String x2 = "";
+
+        for (int index = 1; index < x.length() - 1; index++) 
+            x2 += x.charAt(index);
+        
+        return x2;
+    }
     @FXML
     public void initialize() {
         display();
@@ -23,18 +32,13 @@ public class ViewSingleBookController extends BigController {
     public void display() {
         Book actualBook = App.getBooksList().get(App.getBookIndex());
         String oldThumb = actualBook.thumbnail;
-        String newThumb = "";
-
-        for (int i = 1; i < oldThumb.length() - 1; i++) 
-            newThumb += oldThumb.charAt(i);
-        
-        try {
-            coverImage.setImage(new Image(newThumb));
-        } catch(Exception e) {
-            System.out.println(newThumb);
-        }
+        coverImage.setImage(new Image(tiraAspas(oldThumb)));
         
         bookTitle.setText(actualBook.getTitle());
-        descriptionLabel.setText(actualBook.getDescription());
+
+        Integer a = actualBook.getPageCount();
+        bookPages.setText(a.toString());
+
+        descriptionLabel.setText(tiraAspas(actualBook.getDescription()));
     }
 }

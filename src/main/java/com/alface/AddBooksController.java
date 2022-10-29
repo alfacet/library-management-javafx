@@ -31,6 +31,7 @@ import javafx.scene.input.MouseEvent;
 
 public class AddBooksController extends BigController {
     static ArrayList<Book> lista = new ArrayList<Book>();
+
     Dotenv dotenv = Dotenv.configure()
             .directory("./.env")
             .ignoreIfMalformed() //
@@ -46,48 +47,74 @@ public class AddBooksController extends BigController {
     @FXML
     Label errorLabel;
 
+    public String tiraAspas(String x) {
+        String x2 = "";
+        
+        for (int index = 1; index < x.length() - 1; index++) 
+        {
+            x2 += x.charAt(index);
+        }
+        return x2;
+    }
     public void searchBooks() {
         JsonReader reader;
+
         try {
-            if (inputBookName.getText().equals(""))
-                errorLabel.setText("This field cannot be empty!");
-            else {
+            if (!inputBookName.getText().equals("")) {
                 String pesquisa = inputBookName.getText();
+
                 pesquisa = pesquisa.replaceAll(" ", "%20");
+
                 URL link = new URL(
                         "https://www.googleapis.com/books/v1/volumes?q=" + pesquisa + ":keyes"
                                 + dotenv.get("GOOGLE_API"));
+
                 HttpURLConnection conexao = (HttpURLConnection) link.openConnection();
                 conexao.setRequestMethod("GET");
                 reader = new JsonReader(new InputStreamReader(conexao.getInputStream()));
+                
                 JsonElement dividido = JsonParser.parseReader(reader);
                 JsonObject obj = dividido.getAsJsonObject();
                 JsonArray vetor = obj.get("items").getAsJsonArray();
 
                 ObservableList<Label> lista2 = FXCollections.observableArrayList();
+
                 for (int i = 0; i < vetor.size(); i++) {
                     int atual = i;
+
                     JsonObject temp = vetor.get(i).getAsJsonObject();
                     JsonObject info = temp.get("volumeInfo").getAsJsonObject();
         
                     JsonObject imageLinks = info.get("imageLinks").getAsJsonObject();
-                    if (info.get("description") != null && imageLinks.get("smallThumbnail") != null)
-                        lista.add(new Book(info.get("title").toString(), 23, imageLinks.get("smallThumbnail").toString(), info.get("description").toString()));
+
+                    if (info.get("description") == null && imageLinks.get("smallThumbnail") == null)
+                        lista.add(new Book(tiraAspas(info.get("title").toString()), info.get("pageCount").getAsInt()));
+                    
+                    else if (info.get("description") == null)
+                        lista.add(new Book(tiraAspas(info.get("title").toString()), info.get("pageCount").getAsInt(), imageLinks.get("smallThumbnail").toString()));
+                    
+                    else if (imageLinks.get("smallThumbnail") == null)
+                        lista.add(new Book(tiraAspas(info.get("title").toString()), info.get("pageCount").getAsInt(), null, info.get("description").toString()));
+                    
                     else
-                        lista.add(new Book(info.get("title").toString(), 23));
+                        lista.add(new Book(tiraAspas(info.get("title").toString()), info.get("pageCount").getAsInt(), imageLinks.get("smallThumbnail").toString(), info.get("description").toString()));
                     
                     Label adicionado = new Label(lista.get(i).getTitle());
+
                     adicionado.setOnMouseClicked(new EventHandler<MouseEvent>() {
                         public void handle(MouseEvent event) {
                             mudarPagina(atual);
                         }
                     });
+
                     lista2.add(adicionado);
                 }
-                booksList.setItems(lista2);
-            }
-        } catch (Exception e) {
 
+                booksList.setItems(lista2);
+                
+            } else errorLabel.setText("This field cannot be empty!");
+
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
