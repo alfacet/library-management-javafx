@@ -21,6 +21,7 @@ public class ViewSingleBookController extends BigController {
     public ViewSingleBookController() {
         super();
     }
+    final Image ERROR_IMG = new Image(super.getPathImages() + "error_icon.png");
     
     public String tiraAspas(String x) {
         String x2 = "";
@@ -58,7 +59,8 @@ public class ViewSingleBookController extends BigController {
         String oldThumb = actualBook.thumbnail;
         if (oldThumb != null) 
             coverImage.setImage(new Image(tiraAspas(oldThumb)));
-        
+        else
+            coverImage.setImage(ERROR_IMG);
         bookTitle.setText(actualBook.getTitle());
 
         Integer a = actualBook.getPageCount();
@@ -66,6 +68,8 @@ public class ViewSingleBookController extends BigController {
 
         if(actualBook.getDescription() != null)
             descriptionLabel.setText(tiraAspas(actualBook.getDescription()));
+        else
+            descriptionLabel.setText("Description not avaliable! :C");
     }
     @FXML
     public void addBook()

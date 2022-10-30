@@ -43,19 +43,25 @@ public class AddBooksController extends BigController {
             .ignoreIfMissing()
             .load();
 
-    @FXML Button searchButton;
-    @FXML ListView<Label> booksList;
-    @FXML TextField inputBookName;
-    @FXML Label errorLabel;
-    @FXML ImageView loadingGif;
-    @FXML VBox tela;
+    @FXML
+    Button searchButton;
+    @FXML
+    ListView<Label> booksList;
+    @FXML
+    TextField inputBookName;
+    @FXML
+    Label errorLabel;
+    @FXML
+    ImageView loadingGif;
+    @FXML
+    VBox tela;
 
     public String tiraAspas(String x) {
         String x2 = "";
-        
-        for (int index = 1; index < x.length() - 1; index++) 
+
+        for (int index = 1; index < x.length() - 1; index++)
             x2 += x.charAt(index);
-        
+
         return x2;
     }
 
@@ -63,7 +69,7 @@ public class AddBooksController extends BigController {
         JsonReader reader;
 
         try {
-           
+
             if (!inputBookName.getText().equals("")) {
                 String pesquisa = inputBookName.getText();
                 System.out.println(pesquisa);
@@ -72,13 +78,12 @@ public class AddBooksController extends BigController {
                 pesquisa = pesquisa.replaceAll(" ", "%20");
 
                 URL link = new URL(
-                        "https://www.googleapis.com/books/v1/volumes?q=" + pesquisa + ":keyes"
-                                + dotenv.get("GOOGLE_API"));
+                        "https://www.googleapis.com/books/v1/volumes?q=" + pesquisa + dotenv.get("GOOGLE_API"));
                 System.out.println(link);
                 HttpURLConnection conexao = (HttpURLConnection) link.openConnection();
                 conexao.setRequestMethod("GET");
                 reader = new JsonReader(new InputStreamReader(conexao.getInputStream()));
-                
+
                 JsonElement dividido = JsonParser.parseReader(reader);
                 JsonObject obj = dividido.getAsJsonObject();
                 JsonArray vetor = obj.get("items").getAsJsonArray();
@@ -86,31 +91,37 @@ public class AddBooksController extends BigController {
                 ObservableList<Label> lista2 = FXCollections.observableArrayList();
                 lista = new ArrayList<Book>();
                 for (int i = 0; i < vetor.size(); i++) {
-                    
+
                     int atual = i;
-                    String titulo, descricao, imagem;
+                    String titulo, descricao, imagem = null;
                     int paginas;
+
                     JsonObject temp = vetor.get(i).getAsJsonObject();
+                
                     JsonObject info = temp.get("volumeInfo").getAsJsonObject();
-        
-                    JsonObject imageLinks = info.get("imageLinks").getAsJsonObject();
+                    JsonObject imageLinks = null;
+                    if(info.get("imageLinks") != null)
+                        imageLinks = info.get("imageLinks").getAsJsonObject();
                     titulo = info.get("title").toString();
-                    //System.out.println(titulo);
+                    // System.out.println(titulo);
                     if (info.get("description") == null)
                         descricao = null;
 
-                    else descricao = info.get("description").toString();
-
-                    if (imageLinks.get("smallThumbnail") == null)
-                        imagem = null;
                     else
-                        imagem = imageLinks.get("smallThumbnail").toString();
+                        descricao = info.get("description").toString();
+                    if(imageLinks != null)
+                    {
+                        if (imageLinks.get("smallThumbnail") == null)
+                            imagem = null;
+                        else
+                            imagem = imageLinks.get("smallThumbnail").toString();
+                    }
                     if (info.get("pageCount") == null)
                         paginas = -1;
-                    else   
+                    else
                         paginas = info.get("pageCount").getAsInt();
                     lista.add(new Book(titulo, paginas, imagem, descricao));
-                    
+
                     Label adicionado = new Label(lista.get(i).getTitle());
 
                     adicionado.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -118,7 +129,7 @@ public class AddBooksController extends BigController {
                             mudarPagina(atual);
                         }
                     });
-                    
+
                     adicionado.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         public void handle(MouseEvent event) {
                             lista2.get(atual).setTextFill(Color.RED);
@@ -138,25 +149,27 @@ public class AddBooksController extends BigController {
                 booksList.setItems(lista2);
                 loadingGif.setVisible(false);
                 conexao.disconnect();
-            } else errorLabel.setText("This field cannot be empty!");
+            } else
+                errorLabel.setText("This field cannot be empty!");
 
         } catch (Exception e) {
             System.out.println(e);
         }
     }
+
     @FXML
-//     public void mudarHover(ObservableList<Label> lista, int a)
-//     {
-//         lista.get(a).setStyle("-fx-background-color: black;");
-//         tela.setCursor(Cursor.HAND);
-//    }
-//     public void voltarHover(ObservableList<Label> lista, int a)
-//     {
-//         lista.get(a).setStyle("-fx-background-color: white;");
-//         tela.setCursor(Cursor.DEFAULT);
-//     }
+    // public void mudarHover(ObservableList<Label> lista, int a)
+    // {
+    // lista.get(a).setStyle("-fx-background-color: black;");
+    // tela.setCursor(Cursor.HAND);
+    // }
+    // public void voltarHover(ObservableList<Label> lista, int a)
+    // {
+    // lista.get(a).setStyle("-fx-background-color: white;");
+    // tela.setCursor(Cursor.DEFAULT);
+    // }
     public void mudarPagina(int posicao) {
-        
+
         App.setBookIndex(posicao);
         App.setWhatList(App.SEARCHED_BOOKS_LIST);
         try {
@@ -165,13 +178,11 @@ public class AddBooksController extends BigController {
             e.printStackTrace();
         }
     }
-    public void switchToHome()
-    {
-        try{
-        App.setRoot("home_page");
-        }
-        catch(IOException e)
-        {
+
+    public void switchToHome() {
+        try {
+            App.setRoot("home_page");
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
