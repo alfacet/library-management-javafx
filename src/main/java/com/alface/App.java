@@ -14,7 +14,13 @@ public class App extends Application {
     private static String user;
     private static Scene scene;
     private static ArrayList<Book> booksList;
+    private static ArrayList<Book> addedBooksList = new ArrayList<Book>();
     private static int bookIndex;
+    private static int addedBookIndex;
+    private static int whatList;
+
+    public static final int SEARCHED_BOOKS_LIST = 1;
+    public static final int ADDED_BOOKS_LIST = 2;
     @Override
     public void start(Stage stage) throws IOException {
         try {
@@ -31,6 +37,21 @@ public class App extends Application {
         }
     }
 
+    public static ArrayList<Book> getAddedBooksList() {
+        return addedBooksList;
+    }
+
+    public static void setAddedBooksList(ArrayList<Book> addedBooksList) {
+        App.addedBooksList = addedBooksList;
+    }
+
+    public static int getAddedBookIndex() {
+        return addedBookIndex;
+    }
+
+    public static void setAddedBookIndex(int addedBookIndex) {
+        App.addedBookIndex = addedBookIndex;
+    }
     static public ArrayList<Book> getBooksList() {
         return booksList;
     }
@@ -53,6 +74,13 @@ public class App extends Application {
 
     static public String getUser() {
         return user;
+    }
+    public static int getWhatList() {
+        return whatList;
+    }
+
+    public static void setWhatList(int whatList) {
+        App.whatList = whatList;
     }
 
     static void setRoot(String fxml) throws IOException {
