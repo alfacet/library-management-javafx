@@ -23,6 +23,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -30,6 +31,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 public class AddBooksController extends BigController {
     static ArrayList<Book> lista = new ArrayList<Book>();
@@ -40,25 +43,22 @@ public class AddBooksController extends BigController {
             .ignoreIfMissing()
             .load();
 
-    @FXML
-    Button searchButton;
-    @FXML
-    ListView<Label> booksList;
-    @FXML
-    TextField inputBookName;
-    @FXML
-    Label errorLabel;
+    @FXML Button searchButton;
+    @FXML ListView<Label> booksList;
+    @FXML TextField inputBookName;
+    @FXML Label errorLabel;
     @FXML ImageView loadingGif;
+    @FXML VBox tela;
 
     public String tiraAspas(String x) {
         String x2 = "";
         
         for (int index = 1; index < x.length() - 1; index++) 
-        {
             x2 += x.charAt(index);
-        }
+        
         return x2;
     }
+
     public void searchBooks() {
         JsonReader reader;
 
@@ -96,15 +96,16 @@ public class AddBooksController extends BigController {
                     JsonObject imageLinks = info.get("imageLinks").getAsJsonObject();
                     titulo = info.get("title").toString();
                     //System.out.println(titulo);
-                    if(info.get("description") == null)
+                    if (info.get("description") == null)
                         descricao = null;
-                    else
-                        descricao = info.get("description").toString();
-                    if(imageLinks.get("smallThumbnail") == null)
+
+                    else descricao = info.get("description").toString();
+
+                    if (imageLinks.get("smallThumbnail") == null)
                         imagem = null;
                     else
                         imagem = imageLinks.get("smallThumbnail").toString();
-                    if(info.get("pageCount") == null)
+                    if (info.get("pageCount") == null)
                         paginas = -1;
                     else   
                         paginas = info.get("pageCount").getAsInt();
@@ -117,7 +118,19 @@ public class AddBooksController extends BigController {
                             mudarPagina(atual);
                         }
                     });
-
+                    
+                    adicionado.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        public void handle(MouseEvent event) {
+                            lista2.get(atual).setTextFill(Color.RED);
+                            tela.setCursor(Cursor.HAND);
+                        }
+                    });
+                    adicionado.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        public void handle(MouseEvent event) {
+                            lista2.get(atual).setTextFill(Color.BLACK);
+                            tela.setCursor(Cursor.DEFAULT);
+                        }
+                    });
                     lista2.add(adicionado);
                     App.setBooksList(lista);
                 }
@@ -131,7 +144,17 @@ public class AddBooksController extends BigController {
             System.out.println(e);
         }
     }
-
+    @FXML
+//     public void mudarHover(ObservableList<Label> lista, int a)
+//     {
+//         lista.get(a).setStyle("-fx-background-color: black;");
+//         tela.setCursor(Cursor.HAND);
+//    }
+//     public void voltarHover(ObservableList<Label> lista, int a)
+//     {
+//         lista.get(a).setStyle("-fx-background-color: white;");
+//         tela.setCursor(Cursor.DEFAULT);
+//     }
     public void mudarPagina(int posicao) {
         
         App.setBookIndex(posicao);
