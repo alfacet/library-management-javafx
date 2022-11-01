@@ -11,40 +11,52 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class ViewSingleBookController extends BigController {
-    @FXML TextArea descriptionLabel;
-    @FXML Label bookTitle;
-    @FXML ImageView coverImage;
-    @FXML Label bookPages;
-    @FXML Label messageLabel;
-    @FXML Button addBookButton;
+    @FXML
+    TextArea descriptionLabel;
+    @FXML
+    Label bookTitle;
+    @FXML
+    ImageView coverImage;
+    @FXML
+    Label bookPages;
+    @FXML
+    Label messageLabel;
+    @FXML
+    Button addBookButton;
+    @FXML
+    Label authorsLabel;
     static Book actualBook;
+
     public ViewSingleBookController() {
         super();
     }
+
     final Image ERROR_IMG = new Image(super.getPathImages() + "error_icon.png");
-    
+
     public String tiraAspas(String x) {
         String x2 = "";
 
-        for (int index = 1; index < x.length() - 1; index++) 
+        for (int index = 1; index < x.length() - 1; index++)
             x2 += x.charAt(index);
-        
+
         return x2;
     }
+
     @FXML
     public void initialize() {
-        actualBook  = App.getWhatList() == App.SEARCHED_BOOKS_LIST ? App.getBooksList().get(App.getBookIndex()) : App.getAddedBooksList().get(App.getAddedBookIndex());
-        if(App.getWhatList() == App.SEARCHED_BOOKS_LIST)
+        actualBook = App.getWhatList() == App.SEARCHED_BOOKS_LIST ? App.getBooksList().get(App.getBookIndex())
+                : App.getAddedBooksList().get(App.getAddedBookIndex());
+        if (App.getWhatList() == App.SEARCHED_BOOKS_LIST)
             System.out.println("lista de pesquisados");
         else
             System.out.println("lista de adicionados");
         // System.out.println("added books list:");
         // for (int i = 0; i < App.getAddedBooksList().size(); i++) {
-        //     System.out.println(App.getAddedBooksList().get(i).getTitle());
+        // System.out.println(App.getAddedBooksList().get(i).getTitle());
         // }
         // System.out.println("searched books list:");
         // for (int i = 0; i < App.getBooksList().size(); i++) {
-        //     System.out.println(App.getBooksList().get(i).getTitle());
+        // System.out.println(App.getBooksList().get(i).getTitle());
         // }
         display();
 
@@ -55,9 +67,8 @@ public class ViewSingleBookController extends BigController {
         boolean b = App.getWhatList() == App.SEARCHED_BOOKS_LIST ? true : false;
         addBookButton.setVisible(b);
 
-    
         String oldThumb = actualBook.thumbnail;
-        if (oldThumb != null) 
+        if (oldThumb != null)
             coverImage.setImage(new Image(tiraAspas(oldThumb)));
         else
             coverImage.setImage(ERROR_IMG);
@@ -66,33 +77,40 @@ public class ViewSingleBookController extends BigController {
         Integer a = actualBook.getPageCount();
         bookPages.setText(a.toString());
 
-        if(actualBook.getDescription() != null)
+        if (actualBook.getDescription() != null)
             descriptionLabel.setText(tiraAspas(actualBook.getDescription()));
         else
             descriptionLabel.setText("Description not avaliable! :C");
+
+        if (actualBook.authors.isEmpty())
+            authorsLabel.setText("Authors not avaliable! :C");
+        else {
+            String text = tiraAspas(actualBook.getAuthors().get(0));
+            for (int i = 1; i < actualBook.getAuthors().size(); i++) {
+                text += ", " + tiraAspas(actualBook.getAuthors().get(i));
+            }
+            authorsLabel.setText(text);
+        }
     }
+
     @FXML
-    public void addBook()
-    {
+    public void addBook() {
         ArrayList<Book> l = App.getAddedBooksList();
         l.add(actualBook);
         App.setAddedBooksList(l);
+
         messageLabel.setVisible(true);
         try {
-        App.setRoot("home_page");
-        }
-        catch(IOException e)
-        {
+            App.setRoot("home_page");
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public void backToHome()
-    {
-        try{
-        App.setRoot("home_page");
-        }
-        catch(IOException e)
-        {
+
+    public void backToHome() {
+        try {
+            App.setRoot("home_page");
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

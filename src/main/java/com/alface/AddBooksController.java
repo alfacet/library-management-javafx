@@ -103,6 +103,16 @@ public class AddBooksController extends BigController {
                     if(info.get("imageLinks") != null)
                         imageLinks = info.get("imageLinks").getAsJsonObject();
                     titulo = info.get("title").toString();
+                    JsonArray autores = null;
+                    if(info.get("authors") != null)
+                        autores = info.get("authors").getAsJsonArray();
+                    ArrayList<String> aut = new ArrayList<String>();
+                    if(autores != null)
+                    for (int j = 0; j < autores.size(); j++) {
+                        aut.add(autores.get(j).toString());
+                    }
+                
+                    
                     // System.out.println(titulo);
                     if (info.get("description") == null)
                         descricao = null;
@@ -120,7 +130,7 @@ public class AddBooksController extends BigController {
                         paginas = -1;
                     else
                         paginas = info.get("pageCount").getAsInt();
-                    lista.add(new Book(titulo, paginas, imagem, descricao));
+                    lista.add(new Book(titulo, paginas, imagem, descricao, aut));
 
                     Label adicionado = new Label(lista.get(i).getTitle());
 

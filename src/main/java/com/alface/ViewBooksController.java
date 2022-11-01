@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,6 +16,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class ViewBooksController extends BigController {
@@ -26,7 +29,8 @@ public class ViewBooksController extends BigController {
     ImageView template;
     @FXML
     ImageView avatar;
-
+    @FXML
+    VBox tela;
     public void mudarPagina(int pos) {
         App.setAddedBookIndex(pos);
         App.setWhatList(App.ADDED_BOOKS_LIST);
@@ -81,6 +85,18 @@ public class ViewBooksController extends BigController {
             a.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 public void handle(MouseEvent event) {
                     mudarPagina(atual);
+                }
+            });
+            a.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                public void handle(MouseEvent event) {
+                    lista2.get(atual).setTextFill(Color.RED);
+                    tela.setCursor(Cursor.HAND);
+                }
+            });
+            a.setOnMouseExited(new EventHandler<MouseEvent>() {
+                public void handle(MouseEvent event) {
+                    lista2.get(atual).setTextFill(Color.BLACK);
+                    tela.setCursor(Cursor.DEFAULT);
                 }
             });
             lista2.add(a);

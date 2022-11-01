@@ -13,12 +13,13 @@
          <children>
             <Label fx:id="bookTitle" layoutX="42.0" layoutY="29.0" text="Titulo" />
             <ImageView fx:id="coverImage" fitHeight="150.0" fitWidth="200.0" layoutX="371.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" />
-            <Label layoutX="20.0" layoutY="91.0" text="Description:" />
+            <Label layoutX="20.0" layoutY="128.0" text="Description:" />
             <Label fx:id="bookPages" layoutX="446.0" layoutY="163.0" text="Paginas: " />
             <TextArea fx:id="descriptionLabel" editable="false" layoutX="20.0" layoutY="163.0" prefHeight="200.0" prefWidth="291.0" wrapText="true" />
             <Button fx:id="addBookButton" layoutX="425.0" layoutY="263.0" mnemonicParsing="false" onAction="#addBook" text="Add book" />
             <Label fx:id="messageLabel" layoutX="426.0" layoutY="306.0" text="Book added!" visible="false" />
             <Button layoutX="426.0" layoutY="319.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="37.0" prefWidth="90.0" text="Home" />
+            <Label fx:id="authorsLabel" layoutX="20.0" layoutY="78.0" text="Autores" />
          </children>
       </AnchorPane>
    </children>
