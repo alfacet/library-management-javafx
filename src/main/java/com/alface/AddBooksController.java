@@ -48,7 +48,36 @@ public class AddBooksController extends BigController {
     TextField inputBookName;
     @FXML
     Label errorLabel;
-    @FXML ImageView loadingGif;
+    @FXML 
+    ImageView loadingGif;
+    @FXML
+    ImageView filBooks1;
+    @FXML
+    ImageView filBooks2;
+    @FXML
+    ImageView bookshelf;
+    @FXML
+    ImageView bookshelf2;
+    @FXML
+    ImageView plant;
+    @FXML
+    ImageView plant2;
+
+    public void initialize() {
+        display();
+    }
+
+    @FXML
+    public void display() {
+        filBooks1.setImage(new Image(super.getPathImages() + "add_books.png"));
+        filBooks2.setImage(new Image(super.getPathImages() + "add_books2.png"));
+        bookshelf.setImage(new Image(super.getPathImages() + "bookshelf.png"));
+        bookshelf2.setImage(new Image(super.getPathImages() + "bookshelf.png"));
+        plant.setImage(new Image(super.getPathImages() + "plant_pot.png"));
+        plant2.setImage(new Image(super.getPathImages() + "plant_pot.png"));
+    }
+    // final Image IMG_BOOKS = new Image(super.getPathImages() + "add_books.png");
+    // addBooks.setImage(IMG_BOOKS);
 
     public String tiraAspas(String x) {
         String x2 = "";

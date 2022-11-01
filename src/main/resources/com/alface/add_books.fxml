@@ -1,25 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alface.AddBooksController">
    <children>
-      <AnchorPane prefHeight="401.0" prefWidth="600.0">
+      <AnchorPane prefHeight="392.0" prefWidth="591.0">
          <children>
-            <Label layoutX="76.0" layoutY="48.0" text="Book title: " />
-            <TextField fx:id="inputBookName" layoutX="179.0" layoutY="43.0" />
-            <Button id="searchButton" layoutX="403.0" layoutY="43.0" mnemonicParsing="false" onAction="#searchBooks" text="Search" />
-            <ListView fx:id="booksList" layoutX="112.0" layoutY="160.0" prefHeight="200.0" prefWidth="350.0" />
-            <Label fx:id="errorLabel" layoutX="241.0" layoutY="88.0" text="Book title: " />
-            <Label layoutX="241.0" layoutY="134.0" text="Results:" />
-            <ImageView fx:id="loadingGif" fitHeight="26.0" fitWidth="28.0" layoutX="488.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="homeButton" layoutX="488.0" layoutY="242.0" mnemonicParsing="false" onAction="#switchToHome" text="Home" />
+            <ImageView fx:id="bookshelf2" fitHeight="69.0" fitWidth="212.0" layoutX="360.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../Downloads/bookshelf.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="plant2" fitHeight="55.0" fitWidth="57.0" layoutX="278.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../Downloads/plant_pot.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="plant" fitHeight="55.0" fitWidth="57.0" layoutX="313.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../Downloads/plant_pot.png" />
+               </image>
+            </ImageView>
+            <ImageView id="filBooks" fx:id="filBooks1" fitHeight="81.0" fitWidth="201.0" layoutX="364.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../Downloads/add_books.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="112.0" layoutY="36.0" text="Book title: ">
+               <font>
+                  <Font name="Open Sans" size="18.0" />
+               </font></Label>
+            <TextField fx:id="inputBookName" layoutX="202.0" layoutY="36.0" prefHeight="25.0" prefWidth="186.0" />
+            <Button id="searchButton" layoutX="396.0" layoutY="36.0" mnemonicParsing="false" onAction="#searchBooks" prefHeight="25.0" prefWidth="63.0" text="Search">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Open Sans" size="12.0" />
+               </font></Button>
+            <ListView fx:id="booksList" layoutX="17.0" layoutY="148.0" prefHeight="183.0" prefWidth="344.0" style="-fx-border-color: #512b1a; -fx-border-style: inset; -fx-border-width: 3px;" />
+            <Label fx:id="errorLabel" layoutX="204.0" layoutY="74.0" prefHeight="17.0" prefWidth="186.0" text="Book title: ">
+               <font>
+                  <Font name="Open Sans Extrabold Italic" size="13.0" />
+               </font></Label>
+            <Label layoutX="20.0" layoutY="123.0" text="Results:">
+               <font>
+                  <Font name="Open Sans Extrabold" size="16.0" />
+               </font></Label>
+            <ImageView fx:id="loadingGif" fitHeight="33.0" fitWidth="34.0" layoutX="417.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+               <cursor>
+                  <Cursor fx:constant="WAIT" />
+               </cursor></ImageView>
+            <Button fx:id="homeButton" layoutX="491.0" layoutY="339.0" mnemonicParsing="false" onAction="#switchToHome" prefHeight="33.0" prefWidth="72.0" style="-fx-background-color: #2f4978; -fx-border-radius: 50px; -fx-border-color: black; -fx-background-radius: 50px;" text="Home" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Open Sans Bold" size="15.0" />
+               </font></Button>
+            <ImageView fx:id="filBooks2" fitHeight="87.0" fitWidth="201.0" layoutX="361.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../Downloads/add_books2.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="bookshelf" fitHeight="69.0" fitWidth="204.0" layoutX="360.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../Downloads/bookshelf.png" />
+               </image>
+            </ImageView>
          </children></AnchorPane>
    </children>
 </VBox>
