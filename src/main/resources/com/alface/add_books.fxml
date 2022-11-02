@@ -15,44 +15,44 @@
    <children>
       <AnchorPane prefHeight="392.0" prefWidth="591.0">
          <children>
-            <ImageView fx:id="bookshelf2" fitHeight="69.0" fitWidth="212.0" layoutX="360.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="bookshelf2" fitHeight="69.0" fitWidth="212.0" layoutX="360.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../Downloads/bookshelf.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="plant2" fitHeight="55.0" fitWidth="57.0" layoutX="278.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="plant2" fitHeight="44.0" fitWidth="50.0" layoutX="291.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../Downloads/plant_pot.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="plant" fitHeight="55.0" fitWidth="57.0" layoutX="313.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="plant" fitHeight="50.0" fitWidth="50.0" layoutX="321.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../Downloads/plant_pot.png" />
                </image>
             </ImageView>
-            <ImageView id="filBooks" fx:id="filBooks1" fitHeight="81.0" fitWidth="201.0" layoutX="364.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="filBooks" fx:id="filBooks1" fitHeight="81.0" fitWidth="201.0" layoutX="364.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../Downloads/add_books.png" />
                </image>
             </ImageView>
-            <Label layoutX="112.0" layoutY="36.0" text="Book title: ">
+            <Label layoutX="125.0" layoutY="29.0" text="Book title: ">
                <font>
                   <Font name="Open Sans" size="18.0" />
                </font></Label>
-            <TextField fx:id="inputBookName" layoutX="202.0" layoutY="36.0" prefHeight="25.0" prefWidth="186.0" />
-            <Button id="searchButton" layoutX="396.0" layoutY="36.0" mnemonicParsing="false" onAction="#searchBooks" prefHeight="25.0" prefWidth="63.0" text="Search">
+            <TextField fx:id="inputBookName" layoutX="215.0" layoutY="29.0" prefHeight="25.0" prefWidth="186.0" />
+            <Button id="searchButton" layoutX="409.0" layoutY="29.0" mnemonicParsing="false" onAction="#searchBooks" prefHeight="25.0" prefWidth="63.0" text="Search">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <font>
                   <Font name="Open Sans" size="12.0" />
                </font></Button>
-            <ListView fx:id="booksList" layoutX="17.0" layoutY="148.0" prefHeight="183.0" prefWidth="344.0" style="-fx-border-color: #512b1a; -fx-border-style: inset; -fx-border-width: 3px;" />
-            <Label fx:id="errorLabel" layoutX="204.0" layoutY="74.0" prefHeight="17.0" prefWidth="186.0" text="Book title: ">
+            <ListView fx:id="booksList" layoutX="17.0" layoutY="145.0" prefHeight="183.0" prefWidth="344.0" style="-fx-border-color: #512b1a; -fx-border-style: inset; -fx-border-width: 3px;" />
+            <Label fx:id="errorLabel" layoutX="208.0" layoutY="67.0" prefHeight="20.0" prefWidth="218.0" textAlignment="CENTER">
                <font>
-                  <Font name="Open Sans Extrabold Italic" size="13.0" />
+                  <Font name="Open Sans Extrabold Italic" size="14.0" />
                </font></Label>
-            <Label layoutX="20.0" layoutY="123.0" text="Results:">
+            <Label layoutX="20.0" layoutY="120.0" text="Results:" textFill="#512b1a">
                <font>
                   <Font name="Open Sans Extrabold" size="16.0" />
                </font></Label>
@@ -67,12 +67,12 @@
                <font>
                   <Font name="Open Sans Bold" size="15.0" />
                </font></Button>
-            <ImageView fx:id="filBooks2" fitHeight="87.0" fitWidth="201.0" layoutX="361.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="filBooks2" fitHeight="87.0" fitWidth="201.0" layoutX="361.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../Downloads/add_books2.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="bookshelf" fitHeight="69.0" fitWidth="204.0" layoutX="360.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="bookshelf" fitHeight="69.0" fitWidth="204.0" layoutX="360.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../Downloads/bookshelf.png" />
                </image>
