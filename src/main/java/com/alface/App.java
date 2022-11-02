@@ -12,6 +12,7 @@ import io.github.cdimascio.dotenv.DotenvEntry;
 
 public class App extends Application {
     private static String user;
+    private static String userId;
     private static Scene scene;
     private static ArrayList<Book> booksList;
     private static ArrayList<Book> addedBooksList = new ArrayList<Book>();
@@ -64,6 +65,14 @@ public class App extends Application {
 
     static public void setUser(String u)  {
         user = u;
+    }
+
+    public static String getUserId() {
+        return userId;
+    }
+
+    public static void setUserId(String userId) {
+        App.userId = userId;
     }
 
     public static int getBookIndex() {

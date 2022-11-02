@@ -2,7 +2,23 @@ package com.alface;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.bson.Document;
+import org.bson.conversions.Bson;
+import org.bson.types.ObjectId;
 
+import com.google.gson.Gson;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
+import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.combine;
+import static com.mongodb.client.model.Updates.set;
+import io.github.cdimascio.dotenv.Dotenv;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,6 +27,19 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class ViewSingleBookController extends BigController {
+    Dotenv dotenv = Dotenv.configure()
+            .directory("./.env")
+            .ignoreIfMalformed()
+            .ignoreIfMissing()
+            .load();
+
+    final MongoClient cliente = new MongoClient(new MongoClientURI(dotenv.get("MONGO_URI")));
+    final MongoDatabase banco = cliente.getDatabase("user_info");
+    final Document dados = new Document();
+    final MongoCollection<Document> colecao = banco.getCollection("data");
+    final FindIterable<Document> it = colecao.find();
+    final MongoCursor<Document> mongoCursor = it.iterator();
+
     @FXML
     TextArea descriptionLabel;
     @FXML
@@ -46,20 +75,7 @@ public class ViewSingleBookController extends BigController {
     public void initialize() {
         actualBook = App.getWhatList() == App.SEARCHED_BOOKS_LIST ? App.getBooksList().get(App.getBookIndex())
                 : App.getAddedBooksList().get(App.getAddedBookIndex());
-        if (App.getWhatList() == App.SEARCHED_BOOKS_LIST)
-            System.out.println("lista de pesquisados");
-        else
-            System.out.println("lista de adicionados");
-        // System.out.println("added books list:");
-        // for (int i = 0; i < App.getAddedBooksList().size(); i++) {
-        // System.out.println(App.getAddedBooksList().get(i).getTitle());
-        // }
-        // System.out.println("searched books list:");
-        // for (int i = 0; i < App.getBooksList().size(); i++) {
-        // System.out.println(App.getBooksList().get(i).getTitle());
-        // }
         display();
-
     }
 
     @FXML
@@ -103,6 +119,19 @@ public class ViewSingleBookController extends BigController {
         try {
             App.setRoot("home_page");
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ArrayList<Book> livrosAdicionados = App.getAddedBooksList();
+
+        // Document doc = new Document();
+        // doc.append("username", "jorge");
+        //doc.append("password", "2365317");
+        //doc.append("books", "123");
+        try{
+        Gson gson = new Gson();
+        colecao.updateOne(eq("username", App.getUser()), combine(set("books", gson.toJson(livrosAdicionados))));
+        }
+        catch(Exception e){
             e.printStackTrace();
         }
     }

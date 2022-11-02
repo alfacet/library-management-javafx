@@ -9,6 +9,8 @@ import java.util.List;
 import org.bson.Document;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
@@ -136,7 +138,6 @@ public class LoginController extends BigController {
             if (!err) {
                 dados.append("username", inputNome.getText());
                 dados.append("password", senha);
-
                 banco.getCollection("data").insertOne(dados);
 
                 App.setUser(inputNome.getText());
@@ -175,7 +176,7 @@ public class LoginController extends BigController {
             try {
                 FindIterable<Document> iterator = colecao.find();
                 MongoCursor<Document> mongoCursor = iterator.iterator();
-
+                Gson gson = new Gson();
                 String senha = (inputSenha.isVisible()) ? inputSenha.getText() : inputShownPassword.getText();
                 Document a;
 
@@ -183,7 +184,14 @@ public class LoginController extends BigController {
                     a = mongoCursor.next();
 
                     if (a.get("username").toString().equals(inputNome.getText())) {
+        
                         if (a.get("password").toString().equals(senha)) {
+                            ArrayList<Book> lista = new ArrayList<Book>();
+                            JsonArray testezinho = JsonParser.parseString(a.get("books").toString()).getAsJsonArray();
+                            for (int i = 0; i < testezinho.size(); i++) {
+                                lista.add(gson.fromJson(testezinho.get(i), Book.class));
+                            }
+                            App.setAddedBooksList(lista);
                             App.setUser(inputNome.getText());
                             App.setRoot("home_page");
                         } else {
