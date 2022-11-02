@@ -194,16 +194,6 @@ public class AddBooksController extends BigController {
     }
 
     @FXML
-    // public void mudarHover(ObservableList<Label> lista, int a)
-    // {
-    // lista.get(a).setStyle("-fx-background-color: black;");
-    // tela.setCursor(Cursor.HAND);
-    // }
-    // public void voltarHover(ObservableList<Label> lista, int a)
-    // {
-    // lista.get(a).setStyle("-fx-background-color: white;");
-    // tela.setCursor(Cursor.DEFAULT);
-    // }
     public void mudarPagina(int posicao) {
 
         App.setBookIndex(posicao);

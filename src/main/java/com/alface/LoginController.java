@@ -245,8 +245,6 @@ public class LoginController extends BigController {
     public void changeSignIn() {
         tela.setCursor(Cursor.HAND);
         signinButton.setStyle("-fx-background-color: gray; -fx-background-radius: 8px;");
-        // signinButton.
-        // signinButton.setStyle("-fx-background-radius: 8px;");
     }
 
     @FXML

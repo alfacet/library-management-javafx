@@ -66,15 +66,6 @@ public class App extends Application {
     static public void setUser(String u)  {
         user = u;
     }
-
-    public static String getUserId() {
-        return userId;
-    }
-
-    public static void setUserId(String userId) {
-        App.userId = userId;
-    }
-
     public static int getBookIndex() {
         return bookIndex;
     }

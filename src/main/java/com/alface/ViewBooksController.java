@@ -51,9 +51,6 @@ public class ViewBooksController extends BigController {
         display();
         preencherLista();
         verificarLista();
-        // for (int index = 0; index < listaLivros.getFixedCellSize(); index++) {
-        // listaLivros.getItems().get(index).setStyle("-fx-background-color: black;");
-        // }
     }
 
     @FXML

@@ -41,14 +41,6 @@ public class BigController {
     public String getPathCss() {
         return this.pathCss;
     }
-    // public ArrayList<Book> getBooksList()
-    // {
-    //     return this.booksList;
-    // }
-    // public void setBooksList(ArrayList<Book> l)
-    // {
-    //     this.booksList = l;
-    // }
 
     public int getBookIndex() {
         return bookIndex;

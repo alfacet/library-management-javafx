@@ -39,7 +39,7 @@ public class ViewSingleBookController extends BigController {
     final MongoCollection<Document> colecao = banco.getCollection("data");
     final FindIterable<Document> it = colecao.find();
     final MongoCursor<Document> mongoCursor = it.iterator();
-
+    final Gson gson = new Gson();
     @FXML
     TextArea descriptionLabel;
     @FXML
@@ -54,6 +54,8 @@ public class ViewSingleBookController extends BigController {
     Button addBookButton;
     @FXML
     Label authorsLabel;
+    @FXML
+    Button removeBookButton;
     static Book actualBook;
 
     public ViewSingleBookController() {
@@ -82,7 +84,7 @@ public class ViewSingleBookController extends BigController {
     public void display() {
         boolean b = App.getWhatList() == App.SEARCHED_BOOKS_LIST ? true : false;
         addBookButton.setVisible(b);
-
+        removeBookButton.setVisible(!b);
         String oldThumb = actualBook.thumbnail;
         if (oldThumb != null)
             coverImage.setImage(new Image(tiraAspas(oldThumb)));
@@ -122,20 +124,22 @@ public class ViewSingleBookController extends BigController {
             e.printStackTrace();
         }
         ArrayList<Book> livrosAdicionados = App.getAddedBooksList();
-
-        // Document doc = new Document();
-        // doc.append("username", "jorge");
-        //doc.append("password", "2365317");
-        //doc.append("books", "123");
         try{
-        Gson gson = new Gson();
+        
         colecao.updateOne(eq("username", App.getUser()), combine(set("books", gson.toJson(livrosAdicionados))));
         }
         catch(Exception e){
             e.printStackTrace();
         }
     }
-
+    public void removeBook()
+    {
+        ArrayList<Book> newList = App.getAddedBooksList();
+        newList.remove(App.getAddedBookIndex());
+        App.setAddedBooksList(newList);
+        colecao.updateOne(eq("username", App.getUser()), combine(set("books", gson.toJson(newList))));
+        backToHome();
+    }
     public void backToHome() {
         try {
             App.setRoot("home_page");

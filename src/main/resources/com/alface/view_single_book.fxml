@@ -20,6 +20,7 @@
             <Label fx:id="messageLabel" layoutX="426.0" layoutY="306.0" text="Book added!" visible="false" />
             <Button layoutX="426.0" layoutY="319.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="37.0" prefWidth="90.0" text="Home" />
             <Label fx:id="authorsLabel" layoutX="20.0" layoutY="78.0" text="Autores" />
+            <Button fx:id="removeBookButton" layoutX="425.0" layoutY="263.0" mnemonicParsing="false" onAction="#removeBook" text="Remove book" visible="false" />
          </children>
       </AnchorPane>
    </children>
