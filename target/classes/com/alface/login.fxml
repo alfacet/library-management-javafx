@@ -20,7 +20,7 @@
                </font></Label>
             <TextField fx:id="inputNome" layoutX="81.0" layoutY="116.0" prefHeight="30.0" prefWidth="228.0" promptText="Enter your username" style="-fx-background-radius: 5px;" />
             <PasswordField fx:id="inputSenha" layoutX="81.0" layoutY="172.0" prefHeight="30.0" prefWidth="228.0" promptText="Enter your password" style="-fx-background-radius: 5px;" />
-            <Button fx:id="loginButton" layoutX="81.0" layoutY="254.0" mnemonicParsing="false" onAction="#loginAction" onMouseEntered="#changeLogin" onMouseExited="#backLogin" prefHeight="30.0" prefWidth="228.0" style="-fx-background-color: #2F4978; -fx-background-radius: 8px;" text="Login" textFill="WHITE">
+            <Button fx:id="loginButton" layoutX="81.0" layoutY="254.0" mnemonicParsing="false" onAction="#loginAction" onMouseEntered="#changeLogin" onMouseExited="#backLogin" prefHeight="30.0" prefWidth="228.0" style="-fx-background-radius: 8px; -fx-background-color: #2f4978;" stylesheets="@../../../java/com/alface/index.css" text="Login" textFill="WHITE">
                <font>
                   <Font name="Open Sans Semibold" size="14.0" />
                </font></Button>

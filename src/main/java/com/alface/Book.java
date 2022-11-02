@@ -103,12 +103,13 @@ public class Book {
     public void setBuyLink(String buyLink) {
         this.buyLink = buyLink;
     }
-    public Book(String title, int pages, String imagem, String desc)
+    public Book(String title, int pages, String imagem, String desc, ArrayList<String> autores)
     {
         this.title = title;
         this.pageCount = pages;
         this.thumbnail = imagem;
         this.description = desc;
+        this.authors = autores;
     } 
     public Book(String title, int pages, String imagem)
     {

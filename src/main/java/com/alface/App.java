@@ -24,7 +24,8 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         try {
-                        scene = new Scene(loadFXML("login"));
+            scene = new Scene(loadFXML("login"));
+            // scene.getStylesheets().add("index.css");
             //..\..\..\images\book_login_page.png
             stage.getIcons().add(new Image("https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/77/Enchanting_Table_JE4_BE2.png/revision/latest?cb=20200315175031"));
             stage.setResizable(false);
@@ -52,6 +53,7 @@ public class App extends Application {
     public static void setAddedBookIndex(int addedBookIndex) {
         App.addedBookIndex = addedBookIndex;
     }
+    
     static public ArrayList<Book> getBooksList() {
         return booksList;
     }

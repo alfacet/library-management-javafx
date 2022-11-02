@@ -23,6 +23,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -30,6 +31,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 public class AddBooksController extends BigController {
     static ArrayList<Book> lista = new ArrayList<Book>();
@@ -50,6 +53,8 @@ public class AddBooksController extends BigController {
     Label errorLabel;
     @FXML 
     ImageView loadingGif;
+    @FXML
+    VBox tela;
     @FXML
     ImageView filBooks1;
     @FXML
@@ -76,23 +81,21 @@ public class AddBooksController extends BigController {
         plant.setImage(new Image(super.getPathImages() + "plant_pot.png"));
         plant2.setImage(new Image(super.getPathImages() + "plant_pot.png"));
     }
-    // final Image IMG_BOOKS = new Image(super.getPathImages() + "add_books.png");
-    // addBooks.setImage(IMG_BOOKS);
 
     public String tiraAspas(String x) {
         String x2 = "";
-        
-        for (int index = 1; index < x.length() - 1; index++) 
-        {
+
+        for (int index = 1; index < x.length() - 1; index++)
             x2 += x.charAt(index);
-        }
+
         return x2;
     }
+
     public void searchBooks() {
         JsonReader reader;
 
         try {
-           
+
             if (!inputBookName.getText().equals("")) {
                 String pesquisa = inputBookName.getText();
                 System.out.println(pesquisa);
@@ -101,13 +104,12 @@ public class AddBooksController extends BigController {
                 pesquisa = pesquisa.replaceAll(" ", "%20");
 
                 URL link = new URL(
-                        "https://www.googleapis.com/books/v1/volumes?q=" + pesquisa + ":keyes"
-                                + dotenv.get("GOOGLE_API"));
+                        "https://www.googleapis.com/books/v1/volumes?q=" + pesquisa + dotenv.get("GOOGLE_API"));
                 System.out.println(link);
                 HttpURLConnection conexao = (HttpURLConnection) link.openConnection();
                 conexao.setRequestMethod("GET");
                 reader = new JsonReader(new InputStreamReader(conexao.getInputStream()));
-                
+
                 JsonElement dividido = JsonParser.parseReader(reader);
                 JsonObject obj = dividido.getAsJsonObject();
                 JsonArray vetor = obj.get("items").getAsJsonArray();
@@ -115,30 +117,47 @@ public class AddBooksController extends BigController {
                 ObservableList<Label> lista2 = FXCollections.observableArrayList();
                 lista = new ArrayList<Book>();
                 for (int i = 0; i < vetor.size(); i++) {
-                    
+
                     int atual = i;
-                    String titulo, descricao, imagem;
+                    String titulo, descricao, imagem = null;
                     int paginas;
+
                     JsonObject temp = vetor.get(i).getAsJsonObject();
+                
                     JsonObject info = temp.get("volumeInfo").getAsJsonObject();
-        
-                    JsonObject imageLinks = info.get("imageLinks").getAsJsonObject();
+                    JsonObject imageLinks = null;
+                    if(info.get("imageLinks") != null)
+                        imageLinks = info.get("imageLinks").getAsJsonObject();
                     titulo = info.get("title").toString();
-                    //System.out.println(titulo);
-                    if(info.get("description") == null)
+                    JsonArray autores = null;
+                    if(info.get("authors") != null)
+                        autores = info.get("authors").getAsJsonArray();
+                    ArrayList<String> aut = new ArrayList<String>();
+                    if(autores != null)
+                    for (int j = 0; j < autores.size(); j++) {
+                        aut.add(autores.get(j).toString());
+                    }
+                
+                    
+                    // System.out.println(titulo);
+                    if (info.get("description") == null)
                         descricao = null;
+
                     else
                         descricao = info.get("description").toString();
-                    if(imageLinks.get("smallThumbnail") == null)
-                        imagem = null;
-                    else
-                        imagem = imageLinks.get("smallThumbnail").toString();
-                    if(info.get("pageCount") == null)
+                    if(imageLinks != null)
+                    {
+                        if (imageLinks.get("smallThumbnail") == null)
+                            imagem = null;
+                        else
+                            imagem = imageLinks.get("smallThumbnail").toString();
+                    }
+                    if (info.get("pageCount") == null)
                         paginas = -1;
-                    else   
+                    else
                         paginas = info.get("pageCount").getAsInt();
-                    lista.add(new Book(titulo, paginas, imagem, descricao));
-                    
+                    lista.add(new Book(titulo, paginas, imagem, descricao, aut));
+
                     Label adicionado = new Label(lista.get(i).getTitle());
 
                     adicionado.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -147,6 +166,18 @@ public class AddBooksController extends BigController {
                         }
                     });
 
+                    adicionado.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        public void handle(MouseEvent event) {
+                            lista2.get(atual).setTextFill(Color.RED);
+                            tela.setCursor(Cursor.HAND);
+                        }
+                    });
+                    adicionado.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        public void handle(MouseEvent event) {
+                            lista2.get(atual).setTextFill(Color.BLACK);
+                            tela.setCursor(Cursor.DEFAULT);
+                        }
+                    });
                     lista2.add(adicionado);
                     App.setBooksList(lista);
                 }
@@ -154,15 +185,27 @@ public class AddBooksController extends BigController {
                 booksList.setItems(lista2);
                 loadingGif.setVisible(false);
                 conexao.disconnect();
-            } else errorLabel.setText("This field cannot be empty!");
+            } else
+                errorLabel.setText("This field cannot be empty!");
 
         } catch (Exception e) {
             System.out.println(e);
         }
     }
 
+    @FXML
+    // public void mudarHover(ObservableList<Label> lista, int a)
+    // {
+    // lista.get(a).setStyle("-fx-background-color: black;");
+    // tela.setCursor(Cursor.HAND);
+    // }
+    // public void voltarHover(ObservableList<Label> lista, int a)
+    // {
+    // lista.get(a).setStyle("-fx-background-color: white;");
+    // tela.setCursor(Cursor.DEFAULT);
+    // }
     public void mudarPagina(int posicao) {
-        
+
         App.setBookIndex(posicao);
         App.setWhatList(App.SEARCHED_BOOKS_LIST);
         try {
@@ -171,13 +214,11 @@ public class AddBooksController extends BigController {
             e.printStackTrace();
         }
     }
-    public void switchToHome()
-    {
-        try{
-        App.setRoot("home_page");
-        }
-        catch(IOException e)
-        {
+
+    public void switchToHome() {
+        try {
+            App.setRoot("home_page");
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

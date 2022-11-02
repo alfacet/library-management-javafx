@@ -27,30 +27,18 @@ import io.github.cdimascio.dotenv.DotenvEntry;
 import java.util.logging.Logger;
 
 public class LoginController extends BigController {
-    @FXML
-    VBox tela;
-    @FXML
-    CheckBox mostrar;
-    @FXML
-    PasswordField inputSenha;
-    @FXML
-    TextField senhaMostrada;
-    @FXML
-    TextField inputNome;
-    @FXML
-    Label messageLogin;
-    @FXML
-    ImageView imagemTela;
-    @FXML
-    Button loginButton;
-    @FXML
-    Label showPassword;
-    @FXML
-    TextField inputShownPassword;
-    @FXML
-    ImageView alertImg;
-    @FXML
-    Button signinButton;
+    @FXML VBox tela;
+    @FXML CheckBox mostrar;
+    @FXML PasswordField inputSenha;
+    @FXML TextField senhaMostrada;
+    @FXML TextField inputNome;
+    @FXML Label messageLogin; 
+    @FXML ImageView imagemTela;
+    @FXML Button loginButton;
+    @FXML Label showPassword;
+    @FXML TextField inputShownPassword;
+    @FXML ImageView alertImg;
+    @FXML Button signinButton;
 
     Dotenv dotenv = Dotenv.configure()
             .directory("./.env")
@@ -65,7 +53,7 @@ public class LoginController extends BigController {
     final Document dados = new Document();
     final MongoCollection colecao = banco.getCollection("data");
     final FindIterable<Document> it = colecao.find();
-    final MongoCursor<Document> m = it.iterator();
+    final MongoCursor<Document> mongoCursor = it.iterator();
 
     public LoginController() {
         super();
@@ -73,6 +61,10 @@ public class LoginController extends BigController {
 
     final Image IMG_MINE = new Image(super.getPathImages() + "bookcase.png");
     final Image IMG_ALERT = new Image(super.getPathImages() + "alert_icon.png");
+
+    public enum Operations {
+
+    }
 
     @FXML
     public void initialize() {
@@ -102,8 +94,8 @@ public class LoginController extends BigController {
     public boolean nomeEstaEmUso() {
         Document a;
 
-        while (m.hasNext()) {
-            a = m.next();
+        while (mongoCursor.hasNext()) {
+            a = mongoCursor.next();
 
             if (a.get("username").toString().equals(inputNome.getText()))
                 return true;
@@ -118,6 +110,7 @@ public class LoginController extends BigController {
 
         try {
             String senha = (inputSenha.isVisible()) ? inputSenha.getText() : inputShownPassword.getText();
+
             if (senha.equals("") && inputNome.getText().equals("")) {
                 messageLogin.setText("The name and password fields cannot be empty!");
                 alertImg.setVisible(true);
@@ -137,17 +130,21 @@ public class LoginController extends BigController {
                 messageLogin.setText("This username already exists!");
                 alertImg.setVisible(true);
             }
-
-            else
-                err = false;
+                
+            else err = false;
 
             if (!err) {
                 dados.append("username", inputNome.getText());
                 dados.append("password", senha);
+
                 banco.getCollection("data").insertOne(dados);
+
                 App.setUser(inputNome.getText());
+
                 alertImg.setVisible(false);
+
                 System.out.println("deu bom");
+
                 App.setRoot("home_page");
             }
 
@@ -176,11 +173,14 @@ public class LoginController extends BigController {
 
         else {
             try {
+                FindIterable<Document> iterator = colecao.find();
+                MongoCursor<Document> mongoCursor = iterator.iterator();
+
                 String senha = (inputSenha.isVisible()) ? inputSenha.getText() : inputShownPassword.getText();
                 Document a;
 
-                while (m.hasNext()) {
-                    a = m.next();
+                while (mongoCursor.hasNext()) {
+                    a = mongoCursor.next();
 
                     if (a.get("username").toString().equals(inputNome.getText())) {
                         if (a.get("password").toString().equals(senha)) {
@@ -191,16 +191,7 @@ public class LoginController extends BigController {
                             System.out.println(senha);
                             alertImg.setVisible(true);
                         }
-                    } // else {
-                      // for (int index = 0; index < 5; index++) {
-                      // System.out.println();
-                      // }
-                      // System.out.println("nome no banco: " + a.get("username"));
-                      // System.out.println("Nome na input: " + inputNome.getText());
-                      // for (int index = 0; index < 5; index++) {
-                      // System.out.println();
-                      // }
-                      // }
+                    } 
                 }
             } catch (Exception e) {
                 System.out.println("Impossible to connect!");
