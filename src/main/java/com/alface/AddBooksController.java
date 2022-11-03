@@ -36,7 +36,7 @@ import javafx.scene.paint.Color;
 
 public class AddBooksController extends BigController {
     static ArrayList<Book> lista = new ArrayList<Book>();
-
+    static Gson gson = new Gson();
     Dotenv dotenv = Dotenv.configure()
             .directory("./.env")
             .ignoreIfMalformed() //
@@ -125,38 +125,12 @@ public class AddBooksController extends BigController {
                     JsonObject temp = vetor.get(i).getAsJsonObject();
                 
                     JsonObject info = temp.get("volumeInfo").getAsJsonObject();
-                    JsonObject imageLinks = null;
-                    if(info.get("imageLinks") != null)
-                        imageLinks = info.get("imageLinks").getAsJsonObject();
-                    titulo = info.get("title").toString();
-                    JsonArray autores = null;
-                    if(info.get("authors") != null)
-                        autores = info.get("authors").getAsJsonArray();
-                    ArrayList<String> aut = new ArrayList<String>();
-                    if(autores != null)
-                    for (int j = 0; j < autores.size(); j++) {
-                        aut.add(autores.get(j).toString());
-                    }
-                
+                    Book added = gson.fromJson(info, Book.class);
                     
-                    // System.out.println(titulo);
-                    if (info.get("description") == null)
-                        descricao = null;
-
-                    else
-                        descricao = info.get("description").toString();
-                    if(imageLinks != null)
-                    {
-                        if (imageLinks.get("smallThumbnail") == null)
-                            imagem = null;
-                        else
-                            imagem = imageLinks.get("smallThumbnail").toString();
-                    }
-                    if (info.get("pageCount") == null)
-                        paginas = -1;
-                    else
-                        paginas = info.get("pageCount").getAsInt();
-                    lista.add(new Book(titulo, paginas, imagem, descricao, aut));
+                    if(info.get("imageLinks") != null)
+                        added.setThumbnail(info.get("imageLinks").getAsJsonObject().get("smallThumbnail").toString());
+                    
+                    lista.add(added);
 
                     Label adicionado = new Label(lista.get(i).getTitle());
 
