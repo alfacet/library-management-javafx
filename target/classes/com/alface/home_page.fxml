@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="tela" alignment="CENTER" prefHeight="381.0" prefWidth="573.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alface.HomePageController">
+<VBox fx:id="tela" alignment="CENTER" prefHeight="381.0" prefWidth="573.0" spacing="20.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alface.HomePageController">
     <children>
       <AnchorPane fx:id="circulo1" prefHeight="342.0" prefWidth="459.0">
          <children>

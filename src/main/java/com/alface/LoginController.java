@@ -29,18 +29,30 @@ import io.github.cdimascio.dotenv.DotenvEntry;
 import java.util.logging.Logger;
 
 public class LoginController extends BigController {
-    @FXML VBox tela;
-    @FXML CheckBox mostrar;
-    @FXML PasswordField inputSenha;
-    @FXML TextField senhaMostrada;
-    @FXML TextField inputNome;
-    @FXML Label messageLogin; 
-    @FXML ImageView imagemTela;
-    @FXML Button loginButton;
-    @FXML Label showPassword;
-    @FXML TextField inputShownPassword;
-    @FXML ImageView alertImg;
-    @FXML Button signinButton;
+    @FXML
+    VBox tela;
+    @FXML
+    CheckBox mostrar;
+    @FXML
+    PasswordField inputSenha;
+    @FXML
+    TextField senhaMostrada;
+    @FXML
+    TextField inputNome;
+    @FXML
+    Label messageLogin;
+    @FXML
+    ImageView imagemTela;
+    @FXML
+    Button loginButton;
+    @FXML
+    Label showPassword;
+    @FXML
+    TextField inputShownPassword;
+    @FXML
+    ImageView alertImg;
+    @FXML
+    Button signinButton;
 
     Dotenv dotenv = Dotenv.configure()
             .directory("./.env")
@@ -71,7 +83,10 @@ public class LoginController extends BigController {
     @FXML
     public void initialize() {
         display();
-        
+        MongoCollection<Document> colecao2 = banco.getCollection("ratings");
+        Document a = new Document();
+        a.append("teste", "filipe eh gay");
+        colecao2.insertOne(a);
         System.setProperty("DEBUG.MONGO", "true");
         System.setProperty("DB.TRACE", "true");
     }
@@ -94,10 +109,14 @@ public class LoginController extends BigController {
     }
 
     public boolean nomeEstaEmUso() {
-        Document a;
+        MongoCollection colec = banco.getCollection("data");
+        FindIterable<Document> it = colec.find();
+        MongoCursor<Document> mc = it.iterator();
 
-        while (mongoCursor.hasNext()) {
-            a = mongoCursor.next();
+        Document a;
+        
+        while (mc.hasNext()) {
+            a = mc.next();
 
             if (a.get("username").toString().equals(inputNome.getText()))
                 return true;
@@ -132,8 +151,9 @@ public class LoginController extends BigController {
                 messageLogin.setText("This username already exists!");
                 alertImg.setVisible(true);
             }
-                
-            else err = false;
+
+            else
+                err = false;
 
             if (!err) {
                 dados.append("username", inputNome.getText());
@@ -180,26 +200,37 @@ public class LoginController extends BigController {
                 String senha = (inputSenha.isVisible()) ? inputSenha.getText() : inputShownPassword.getText();
                 Document a;
 
-                while (mongoCursor.hasNext()) {
-                    a = mongoCursor.next();
+                if (!nomeEstaEmUso()) {
+                    messageLogin.setText("This username does not exists!");
+                    System.out.println(senha);
+                    alertImg.setVisible(true);
+                } else {
+                    while (mongoCursor.hasNext()) {
+                        a = mongoCursor.next();
 
-                    if (a.get("username").toString().equals(inputNome.getText())) {
-        
-                        if (a.get("password").toString().equals(senha)) {
-                            ArrayList<Book> lista = new ArrayList<Book>();
-                            JsonArray testezinho = JsonParser.parseString(a.get("books").toString()).getAsJsonArray();
-                            for (int i = 0; i < testezinho.size(); i++) {
-                                lista.add(gson.fromJson(testezinho.get(i), Book.class));
+                        if (a.get("username").toString().equals(inputNome.getText())) {
+
+                            if (a.get("password").toString().equals(senha)) {
+                                ArrayList<Book> lista = new ArrayList<Book>();
+
+                                JsonArray testezinho = JsonParser.parseString(a.get("books").toString())
+                                        .getAsJsonArray();
+
+                                for (int i = 0; i < testezinho.size(); i++)
+                                    lista.add(gson.fromJson(testezinho.get(i), Book.class));
+
+                                App.setAddedBooksList(lista);
+                                App.setUser(inputNome.getText());
+                                App.setRoot("home_page");
+
+                            } else {
+                                messageLogin.setText("Invalid password!");
+                                System.out.println(senha);
+                                alertImg.setVisible(true);
                             }
-                            App.setAddedBooksList(lista);
-                            App.setUser(inputNome.getText());
-                            App.setRoot("home_page");
-                        } else {
-                            messageLogin.setText("Invalid password!");
-                            System.out.println(senha);
-                            alertImg.setVisible(true);
                         }
-                    } 
+
+                    }
                 }
             } catch (Exception e) {
                 System.out.println("Impossible to connect!");
