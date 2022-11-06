@@ -1,38 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alface.ViewSingleBookController">
    <children>
-      <AnchorPane prefHeight="402.0" prefWidth="600.0">
+      <AnchorPane prefHeight="402.0" prefWidth="600.0" style="-fx-background-color: white;">
          <children>
-            <Label fx:id="bookTitle" layoutX="42.0" layoutY="29.0" text="Titulo" />
-            <ImageView fx:id="coverImage" fitHeight="150.0" fitWidth="200.0" layoutX="371.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" />
-            <Label layoutX="20.0" layoutY="128.0" text="Description:" />
-            <Label fx:id="bookPages" layoutX="446.0" layoutY="163.0" text="Paginas: " />
-            <TextArea fx:id="descriptionLabel" editable="false" layoutX="20.0" layoutY="163.0" prefHeight="200.0" prefWidth="291.0" wrapText="true" />
-            <Button fx:id="addBookButton" layoutX="425.0" layoutY="263.0" mnemonicParsing="false" onAction="#addBook" text="Add book" />
+            <Button fx:id="rateButton" layoutX="322.0" layoutY="349.0" mnemonicParsing="false" onAction="#openModal" prefHeight="27.0" prefWidth="74.0" text="Rate">
+               <font>
+                  <Font name="Open Sans Semibold" size="12.0" />
+               </font></Button>
+            <Label fx:id="bookTitle" layoutX="26.0" layoutY="16.0" prefHeight="35.0" prefWidth="551.0" text="Titulo" textFill="#2f4978">
+               <font>
+                  <Font name="Open Sans Semibold" size="24.0" />
+               </font></Label>
+            <ImageView fx:id="coverImage" fitHeight="150.0" fitWidth="200.0" layoutX="359.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="descriptionTitle" layoutX="20.0" layoutY="126.0" text="Description:" textFill="#2f4978">
+               <font>
+                  <Font name="Open Sans Semibold" size="18.0" />
+               </font></Label>
+            <Label fx:id="bookPages" layoutX="427.0" layoutY="237.0" text="Paginas: " textFill="#d9b669" />
+            <TextArea fx:id="descriptionLabel" editable="false" layoutX="14.0" layoutY="154.0" prefHeight="196.0" prefWidth="291.0" style="-fx-border-color: white; -fx-background-color: white;" wrapText="true">
+               <font>
+                  <Font name="Open Sans" size="16.0" />
+               </font></TextArea>
+            <Button fx:id="addBookButton" layoutX="489.0" layoutY="349.0" mnemonicParsing="false" onAction="#addBook" prefHeight="27.0" prefWidth="74.0" text="Add book">
+               <font>
+                  <Font name="Open Sans Semibold" size="12.0" />
+               </font></Button>
             <Label fx:id="messageLabel" layoutX="426.0" layoutY="306.0" text="Book added!" visible="false" />
-            <Button layoutX="426.0" layoutY="319.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="37.0" prefWidth="90.0" text="Home" />
-            <Label fx:id="authorsLabel" layoutX="20.0" layoutY="78.0" text="Autores" />
-            <Button fx:id="removeBookButton" layoutX="425.0" layoutY="263.0" mnemonicParsing="false" onAction="#removeBook" text="Remove book" visible="false" />
-            <VBox fx:id="modal" layoutX="116.0" layoutY="14.0" prefHeight="367.0" prefWidth="306.0" style="-fx-background-color: lightblue;">
+            <Button fx:id="homeButton" layoutX="406.0" layoutY="349.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="27.0" prefWidth="74.0" text="Home">
+               <font>
+                  <Font name="Open Sans Semibold" size="12.0" />
+               </font></Button>
+            <Label fx:id="authorsLabel" layoutX="25.0" layoutY="65.0" text="Autores" textFill="#d9b669">
+               <font>
+                  <Font name="Open Sans Semibold" size="18.0" />
+               </font></Label>
+            <Button fx:id="removeBookButton" layoutX="489.0" layoutY="349.0" mnemonicParsing="false" onAction="#removeBook" prefHeight="26.0" prefWidth="74.0" text="Remove ">
+               <font>
+                  <Font name="Open Sans Semibold" size="12.0" />
+               </font></Button>
+            <VBox fx:id="modal" layoutX="67.0" layoutY="14.0" prefHeight="357.0" prefWidth="466.0" style="-fx-border-color: grey; -fx-background-color: #F3F3F3; -fx-border-radius: 30px; -fx-background-radius: 30px;" visible="false">
                <children>
-                  <AnchorPane prefHeight="363.0" prefWidth="306.0">
+                  <AnchorPane prefHeight="335.0" prefWidth="466.0">
                      <children>
-                        <TextArea fx:id="ratingCommentaryInput" layoutX="27.0" layoutY="115.0" prefHeight="134.0" prefWidth="251.0" />
-                        <Label layoutX="67.0" layoutY="63.0" text="Write your commentary:" />
-                        <Button fx:id="submitRateButton" layoutX="107.0" layoutY="283.0" mnemonicParsing="false" onAction="#submitRating" prefHeight="37.0" prefWidth="90.0" text="Submit" />
+                        <TextArea fx:id="ratingCommentaryInput" layoutX="94.0" layoutY="132.0" prefHeight="134.0" prefWidth="251.0">
+                           <font>
+                              <Font name="Open Sans Extrabold" size="16.0" />
+                           </font></TextArea>
+                        <Label layoutX="114.0" layoutY="99.0" text="Write your commentary:" textFill="#2f4978">
+                           <font>
+                              <Font name="Open Sans Semibold" size="18.0" />
+                           </font></Label>
+                        <Button fx:id="submitRateButton" layoutX="121.0" layoutY="284.0" mnemonicParsing="false" onAction="#submitRating" prefHeight="37.0" prefWidth="90.0" style="-fx-background-color: green; -fx-background-radius: 10px;" text="Submit" textFill="WHITE">
+                           <font>
+                              <Font name="Open Sans Semibold" size="16.0" />
+                           </font></Button>
+                        <Button fx:id="submitRateButton1" layoutX="233.0" layoutY="284.0" mnemonicParsing="false" onAction="#submitRating" prefHeight="37.0" prefWidth="90.0" style="-fx-background-color: red; -fx-background-radius: 10px;" text="Close" textFill="WHITE">
+                           <font>
+                              <Font name="Open Sans Semibold" size="16.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="75.0" layoutY="14.0" text="Give a rating from 0 to 10 to this book:" textFill="#2f4978">
+                           <font>
+                              <Font name="Open Sans Semibold" size="18.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="selectRatingComboBox" layoutX="145.0" layoutY="48.0" prefWidth="150.0" promptText="Select here:" style="-fx-background-color: white;" />
                      </children>
                   </AnchorPane>
                </children>
             </VBox>
-            <Button fx:id="rateButton" layoutX="425.0" layoutY="212.0" mnemonicParsing="false" onAction="#changeModal" prefHeight="37.0" prefWidth="90.0" text="Rate" />
          </children>
       </AnchorPane>
    </children>

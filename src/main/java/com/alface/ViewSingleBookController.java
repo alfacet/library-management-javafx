@@ -19,8 +19,12 @@ import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Updates.combine;
 import static com.mongodb.client.model.Updates.set;
 import io.github.cdimascio.dotenv.Dotenv;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -41,30 +45,22 @@ public class ViewSingleBookController extends BigController {
     final FindIterable<Document> it = colecao.find();
     final MongoCursor<Document> mongoCursor = it.iterator();
     final Gson gson = new Gson();
-    @FXML
-    TextArea descriptionLabel;
-    @FXML
-    Label bookTitle;
-    @FXML
-    ImageView coverImage;
-    @FXML
-    Label bookPages;
-    @FXML
-    Label messageLabel;
-    @FXML
-    Button addBookButton;
-    @FXML
-    Label authorsLabel;
-    @FXML
-    Button removeBookButton;
-    @FXML
-    Button rateButton;
-    @FXML
-    VBox modal;
-    @FXML
-    Button submitRateButton;
-    @FXML
-    TextArea ratingCommentaryInput;
+    @FXML TextArea descriptionLabel;
+    @FXML Label bookTitle;
+    @FXML ImageView coverImage;
+    @FXML Label bookPages;
+    @FXML Label messageLabel;
+    @FXML Button addBookButton;
+    @FXML Label authorsLabel;
+    @FXML Button removeBookButton;
+    @FXML Button rateButton;
+    @FXML VBox modal;
+    @FXML Button submitRateButton;
+    @FXML TextArea ratingCommentaryInput;
+    @FXML Label descriptionTitle;
+    @FXML ComboBox<String> selectRatingComboBox;
+    @FXML Button homeButton;
+
     static Book actualBook;
 
     public ViewSingleBookController() {
@@ -105,19 +101,25 @@ public class ViewSingleBookController extends BigController {
         bookPages.setText(a.toString());
 
         if (actualBook.getDescription() != null)
-            descriptionLabel.setText(tiraAspas(actualBook.getDescription()));
+            descriptionLabel.setText(actualBook.getDescription());
         else
             descriptionLabel.setText("Description not avaliable! :C");
 
         if (actualBook.authors.isEmpty())
             authorsLabel.setText("Authors not avaliable! :C");
         else {
-            String text = tiraAspas(actualBook.getAuthors().get(0));
+            String text = actualBook.getAuthors().get(0);
             for (int i = 1; i < actualBook.getAuthors().size(); i++) {
-                text += ", " + tiraAspas(actualBook.getAuthors().get(i));
+                text += ", " + actualBook.getAuthors().get(i);
             }
             authorsLabel.setText(text);
         }
+        selectRatingComboBox.setStyle("-fx-font: 16px \"Open Sans Semibold\";");
+        ObservableList<String> coisas = FXCollections.observableArrayList();
+        for (Integer i = 1; i <= 10; i++) 
+            coisas.add(i.toString());
+        
+        selectRatingComboBox.setItems(coisas);
     }
 
     @FXML
@@ -156,10 +158,28 @@ public class ViewSingleBookController extends BigController {
             e.printStackTrace();
         }
     }
-    @FXML
-    public void changeModal()
+    private void changeComponentsVisibility(boolean modalIsVisible)
     {
-        modal.setVisible(!modal.isVisible());
+        modal.setVisible(modalIsVisible);
+        bookTitle.setVisible(!modalIsVisible);
+        authorsLabel.setVisible(!modalIsVisible);
+        descriptionLabel.setVisible(!modalIsVisible);
+        descriptionTitle.setVisible(!modalIsVisible);
+        removeBookButton.setVisible(!modalIsVisible);
+        addBookButton.setVisible(!modalIsVisible);
+        removeBookButton.setVisible(!modalIsVisible);
+        rateButton.setVisible(!modalIsVisible);
+        homeButton.setVisible(!modalIsVisible);
+    }
+    @FXML
+    public void openModal()
+    {
+        changeComponentsVisibility(true);
+    }
+    @FXML
+    public void closeModal()
+    {
+        changeComponentsVisibility(false);
     }
     @FXML
     public void submitRating()
@@ -176,5 +196,7 @@ public class ViewSingleBookController extends BigController {
         {
             e.printStackTrace();
         }
+        ratingCommentaryInput.clear();
+        closeModal();
     }
 }

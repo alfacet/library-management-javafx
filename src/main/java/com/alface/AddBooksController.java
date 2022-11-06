@@ -119,8 +119,6 @@ public class AddBooksController extends BigController {
                 for (int i = 0; i < vetor.size(); i++) {
 
                     int atual = i;
-                    String titulo, descricao, imagem = null;
-                    int paginas;
 
                     JsonObject temp = vetor.get(i).getAsJsonObject();
                 
