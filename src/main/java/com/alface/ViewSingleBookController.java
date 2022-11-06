@@ -25,6 +25,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 
 public class ViewSingleBookController extends BigController {
     Dotenv dotenv = Dotenv.configure()
@@ -56,6 +57,14 @@ public class ViewSingleBookController extends BigController {
     Label authorsLabel;
     @FXML
     Button removeBookButton;
+    @FXML
+    Button rateButton;
+    @FXML
+    VBox modal;
+    @FXML
+    Button submitRateButton;
+    @FXML
+    TextArea ratingCommentaryInput;
     static Book actualBook;
 
     public ViewSingleBookController() {
@@ -144,6 +153,27 @@ public class ViewSingleBookController extends BigController {
         try {
             App.setRoot("home_page");
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    public void changeModal()
+    {
+        modal.setVisible(!modal.isVisible());
+    }
+    @FXML
+    public void submitRating()
+    {
+        MongoCollection<Document> colecao2 = banco.getCollection("ratings");
+        Rating novo = new Rating(App.getUser(), actualBook.getTitle(), ratingCommentaryInput.getText());
+        ArrayList<Rating> DESGRAÇA = App.getRatingsList();
+        DESGRAÇA.add(novo);
+        App.setRatingsList(DESGRAÇA);
+        try {
+        colecao2.updateOne(eq(new ObjectId("6366fe6e748621d610bc1713")), combine(set("ratings", gson.toJson(DESGRAÇA))));
+        }
+        catch(Exception e)
+        {
             e.printStackTrace();
         }
     }

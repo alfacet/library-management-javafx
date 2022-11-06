@@ -9,7 +9,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alface.ViewSingleBookController">
    <children>
-      <AnchorPane prefHeight="402.0" prefWidth="600.0" style="-fx-background-color: white;">
+      <AnchorPane prefHeight="402.0" prefWidth="600.0">
          <children>
             <Label fx:id="bookTitle" layoutX="42.0" layoutY="29.0" text="Titulo" />
             <ImageView fx:id="coverImage" fitHeight="150.0" fitWidth="200.0" layoutX="371.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" />
@@ -21,6 +21,18 @@
             <Button layoutX="426.0" layoutY="319.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="37.0" prefWidth="90.0" text="Home" />
             <Label fx:id="authorsLabel" layoutX="20.0" layoutY="78.0" text="Autores" />
             <Button fx:id="removeBookButton" layoutX="425.0" layoutY="263.0" mnemonicParsing="false" onAction="#removeBook" text="Remove book" visible="false" />
+            <VBox fx:id="modal" layoutX="116.0" layoutY="14.0" prefHeight="367.0" prefWidth="306.0" style="-fx-background-color: lightblue;">
+               <children>
+                  <AnchorPane prefHeight="363.0" prefWidth="306.0">
+                     <children>
+                        <TextArea fx:id="ratingCommentaryInput" layoutX="27.0" layoutY="115.0" prefHeight="134.0" prefWidth="251.0" />
+                        <Label layoutX="67.0" layoutY="63.0" text="Write your commentary:" />
+                        <Button fx:id="submitRateButton" layoutX="107.0" layoutY="283.0" mnemonicParsing="false" onAction="#submitRating" prefHeight="37.0" prefWidth="90.0" text="Submit" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <Button fx:id="rateButton" layoutX="425.0" layoutY="212.0" mnemonicParsing="false" onAction="#changeModal" prefHeight="37.0" prefWidth="90.0" text="Rate" />
          </children>
       </AnchorPane>
    </children>

@@ -19,7 +19,7 @@ public class App extends Application {
     private static int bookIndex;
     private static int addedBookIndex;
     private static int whatList;
-
+    private static ArrayList<Rating> ratingsList = new ArrayList<Rating>();
     public static final int SEARCHED_BOOKS_LIST = 1;
     public static final int ADDED_BOOKS_LIST = 2;
     @Override
@@ -37,6 +37,14 @@ public class App extends Application {
             System.out.println("Error to initialize :(");
             e.printStackTrace();
         }
+    }
+
+    public static ArrayList<Rating> getRatingsList() {
+        return ratingsList;
+    }
+
+    public static void setRatingsList(ArrayList<Rating> ratingsList) {
+        App.ratingsList = ratingsList;
     }
 
     public static ArrayList<Book> getAddedBooksList() {

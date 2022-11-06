@@ -10,6 +10,7 @@ import org.bson.Document;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import com.mongodb.MongoClient;
@@ -83,10 +84,9 @@ public class LoginController extends BigController {
     @FXML
     public void initialize() {
         display();
-        MongoCollection<Document> colecao2 = banco.getCollection("ratings");
-        Document a = new Document();
-        a.append("teste", "filipe eh gay");
-        colecao2.insertOne(a);
+        // MongoCollection<Document> colecao2 = banco.getCollection("ratings");
+        
+        // Rating a = JsonParser.parseString(colecao2);
         System.setProperty("DEBUG.MONGO", "true");
         System.setProperty("DB.TRACE", "true");
     }
