@@ -6,12 +6,16 @@ public class Rating {
     public String title;
     public String commentary;
     public double rating;
-    
-    public Rating(String a, String t, String c)
+    public Rating()
+    {
+        
+    }
+    public Rating(String a, String t, String c, double r)
     {
         this.author = a;
         this.title = t;
         this.commentary = c;
+        this.rating = r;
     }    
     
     public String getAuthor() {

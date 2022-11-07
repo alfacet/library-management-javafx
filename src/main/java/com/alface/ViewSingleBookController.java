@@ -60,7 +60,7 @@ public class ViewSingleBookController extends BigController {
     @FXML Label descriptionTitle;
     @FXML ComboBox<String> selectRatingComboBox;
     @FXML Button homeButton;
-
+    @FXML Button viewRatingButton;
     static Book actualBook;
 
     public ViewSingleBookController() {
@@ -90,6 +90,8 @@ public class ViewSingleBookController extends BigController {
         boolean b = App.getWhatList() == App.SEARCHED_BOOKS_LIST ? true : false;
         addBookButton.setVisible(b);
         removeBookButton.setVisible(!b);
+        viewRatingButton.setVisible(b);
+        rateButton.setVisible(!b);
         String oldThumb = actualBook.thumbnail;
         if (oldThumb != null)
             coverImage.setImage(new Image(tiraAspas(oldThumb)));
@@ -105,15 +107,22 @@ public class ViewSingleBookController extends BigController {
         else
             descriptionLabel.setText("Description not avaliable! :C");
 
-        if (actualBook.authors.isEmpty())
-            authorsLabel.setText("Authors not avaliable! :C");
-        else {
-            String text = actualBook.getAuthors().get(0);
-            for (int i = 1; i < actualBook.getAuthors().size(); i++) {
-                text += ", " + actualBook.getAuthors().get(i);
+        if(actualBook.authors != null)
+        {    
+            if (actualBook.authors.isEmpty())
+                    authorsLabel.setText("Authors not avaliable! :C");
+            
+            else {
+                String text = actualBook.getAuthors().get(0);
+                for (int i = 1; i < actualBook.getAuthors().size(); i++) {
+                    text += ", " + actualBook.getAuthors().get(i);
+                }
+                authorsLabel.setText(text);
             }
-            authorsLabel.setText(text);
         }
+        else
+            authorsLabel.setText("Authors not avaliable! :C");
+
         selectRatingComboBox.setStyle("-fx-font: 16px \"Open Sans Semibold\";");
         ObservableList<String> coisas = FXCollections.observableArrayList();
         for (Integer i = 1; i <= 10; i++) 
@@ -170,6 +179,7 @@ public class ViewSingleBookController extends BigController {
         removeBookButton.setVisible(!modalIsVisible);
         rateButton.setVisible(!modalIsVisible);
         homeButton.setVisible(!modalIsVisible);
+        coverImage.setVisible(!modalIsVisible);
     }
     @FXML
     public void openModal()
@@ -185,12 +195,12 @@ public class ViewSingleBookController extends BigController {
     public void submitRating()
     {
         MongoCollection<Document> colecao2 = banco.getCollection("ratings");
-        Rating novo = new Rating(App.getUser(), actualBook.getTitle(), ratingCommentaryInput.getText());
+        Rating novo = new Rating(App.getUser(), actualBook.getTitle(), ratingCommentaryInput.getText(), Double.parseDouble(selectRatingComboBox.getValue()));
         ArrayList<Rating> DESGRAÇA = App.getRatingsList();
         DESGRAÇA.add(novo);
         App.setRatingsList(DESGRAÇA);
         try {
-        colecao2.updateOne(eq(new ObjectId("6366fe6e748621d610bc1713")), combine(set("ratings", gson.toJson(DESGRAÇA))));
+        colecao2.updateOne(eq(new ObjectId("6368f7ffd8d90300736e1ce9")), combine(set("ratings", gson.toJson(DESGRAÇA))));
         }
         catch(Exception e)
         {
@@ -198,5 +208,15 @@ public class ViewSingleBookController extends BigController {
         }
         ratingCommentaryInput.clear();
         closeModal();
+    }
+    public void openRatingsPage()
+    {
+        try {
+        App.setRoot("view-ratings");
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 }

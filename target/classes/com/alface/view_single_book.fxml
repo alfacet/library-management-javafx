@@ -13,7 +13,7 @@
    <children>
       <AnchorPane prefHeight="402.0" prefWidth="600.0" style="-fx-background-color: white;">
          <children>
-            <Button fx:id="rateButton" layoutX="322.0" layoutY="349.0" mnemonicParsing="false" onAction="#openModal" prefHeight="27.0" prefWidth="74.0" text="Rate">
+            <Button fx:id="rateButton" layoutX="322.0" layoutY="349.0" mnemonicParsing="false" onAction="#openModal" prefHeight="27.0" prefWidth="74.0" text="Rate" visible="false">
                <font>
                   <Font name="Open Sans Semibold" size="12.0" />
                </font></Button>
@@ -21,12 +21,11 @@
                <font>
                   <Font name="Open Sans Semibold" size="24.0" />
                </font></Label>
-            <ImageView fx:id="coverImage" fitHeight="150.0" fitWidth="200.0" layoutX="359.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="descriptionTitle" layoutX="20.0" layoutY="126.0" text="Description:" textFill="#2f4978">
                <font>
                   <Font name="Open Sans Semibold" size="18.0" />
                </font></Label>
-            <Label fx:id="bookPages" layoutX="427.0" layoutY="237.0" text="Paginas: " textFill="#d9b669" />
+            <Label fx:id="bookPages" layoutX="427.0" layoutY="252.0" text="Paginas: " textFill="#d9b669" />
             <TextArea fx:id="descriptionLabel" editable="false" layoutX="14.0" layoutY="154.0" prefHeight="196.0" prefWidth="291.0" style="-fx-border-color: white; -fx-background-color: white;" wrapText="true">
                <font>
                   <Font name="Open Sans" size="16.0" />
@@ -52,9 +51,9 @@
                <children>
                   <AnchorPane prefHeight="335.0" prefWidth="466.0">
                      <children>
-                        <TextArea fx:id="ratingCommentaryInput" layoutX="94.0" layoutY="132.0" prefHeight="134.0" prefWidth="251.0">
+                        <TextArea fx:id="ratingCommentaryInput" layoutX="94.0" layoutY="132.0" prefHeight="134.0" prefWidth="251.0" wrapText="true">
                            <font>
-                              <Font name="Open Sans Extrabold" size="16.0" />
+                              <Font name="Open Sans" size="16.0" />
                            </font></TextArea>
                         <Label layoutX="114.0" layoutY="99.0" text="Write your commentary:" textFill="#2f4978">
                            <font>
@@ -79,6 +78,12 @@
                   </AnchorPane>
                </children>
             </VBox>
+            <ImageView fx:id="coverImage" fitHeight="175.0" fitWidth="129.0" layoutX="394.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="viewRatingButton" layoutX="322.0" layoutY="348.0" mnemonicParsing="false" onAction="#openRatingsPage" prefHeight="27.0" prefWidth="74.0" text="Ratings">
+               <font>
+                  <Font name="Open Sans Semibold" size="12.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>

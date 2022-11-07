@@ -86,7 +86,9 @@ public class LoginController extends BigController {
         display();
         // MongoCollection<Document> colecao2 = banco.getCollection("ratings");
         
-        // Rating a = JsonParser.parseString(colecao2);
+        // Document bruh = new Document();
+        // bruh.append("ratings", "dhabkd");
+        // colecao2.insertOne(bruh);
         System.setProperty("DEBUG.MONGO", "true");
         System.setProperty("DB.TRACE", "true");
     }
@@ -158,6 +160,7 @@ public class LoginController extends BigController {
             if (!err) {
                 dados.append("username", inputNome.getText());
                 dados.append("password", senha);
+                dados.append("books", new ArrayList<Book>());
                 banco.getCollection("data").insertOne(dados);
 
                 App.setUser(inputNome.getText());
@@ -211,7 +214,13 @@ public class LoginController extends BigController {
                         if (a.get("username").toString().equals(inputNome.getText())) {
 
                             if (a.get("password").toString().equals(senha)) {
+                                MongoCollection<Document> colecao2 = banco.getCollection("ratings");
+                                FindIterable<Document> it2 = colecao2.find();
+                                MongoCursor<Document> mongoCursor2 = it2.iterator();
+                                
+                                
                                 ArrayList<Book> lista = new ArrayList<Book>();
+                                ArrayList<Rating> listaRating = new ArrayList<Rating>();
 
                                 JsonArray testezinho = JsonParser.parseString(a.get("books").toString())
                                         .getAsJsonArray();
@@ -220,6 +229,12 @@ public class LoginController extends BigController {
                                     lista.add(gson.fromJson(testezinho.get(i), Book.class));
 
                                 App.setAddedBooksList(lista);
+
+                                JsonArray avaliacoes = JsonParser.parseString(mongoCursor2.next().get("ratings").toString()).getAsJsonArray();
+                                for(int i = 0; i < avaliacoes.size(); i++)
+                                    listaRating.add(gson.fromJson(avaliacoes.get(i), Rating.class));
+                                
+                                App.setRatingsList(listaRating);
                                 App.setUser(inputNome.getText());
                                 App.setRoot("home_page");
 
