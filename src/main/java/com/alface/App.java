@@ -3,10 +3,12 @@ package com.alface;
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.image.*;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import io.github.cdimascio.dotenv.Dotenv;
 import io.github.cdimascio.dotenv.DotenvEntry;
 
@@ -32,6 +34,16 @@ public class App extends Application {
             stage.setResizable(false);
             stage.setScene(scene);
             stage.setTitle("Epic book manager with doge :)");
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+            try {
+                stop();
+            } catch(Exception e){
+                e.printStackTrace();
+                }
+            }
+        });
             stage.show();
         } catch (Exception e) {
             System.out.println("Error to initialize :(");

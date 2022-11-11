@@ -63,7 +63,7 @@
                            <font>
                               <Font name="Open Sans Semibold" size="16.0" />
                            </font></Button>
-                        <Button fx:id="submitRateButton1" layoutX="233.0" layoutY="284.0" mnemonicParsing="false" onAction="#submitRating" prefHeight="37.0" prefWidth="90.0" style="-fx-background-color: red; -fx-background-radius: 10px;" text="Close" textFill="WHITE">
+                        <Button fx:id="closeButton" layoutX="233.0" layoutY="284.0" mnemonicParsing="false" onAction="#closeModal" prefHeight="37.0" prefWidth="90.0" style="-fx-background-color: red; -fx-background-radius: 10px;" text="Close" textFill="WHITE">
                            <font>
                               <Font name="Open Sans Semibold" size="16.0" />
                            </font>

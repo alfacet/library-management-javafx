@@ -1,6 +1,7 @@
 package com.alface;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import org.bson.Document;
@@ -81,23 +82,30 @@ public class ViewRatingsController extends BigController {
            
         }
         ratingsList.setItems(lista);
-        mediaLabel.setText("This book has a media of " + media(avaliacoes) + " / 10");
+        if (lista.isEmpty())
+           mediaLabel.setText("This book is not rated yet"); 
+        else
+            mediaLabel.setText("This book has a average rating of " + media(avaliacoes) + " / 10");
     }
-    public double media(ArrayList<Double> list)
-    {
+    public String media(ArrayList<Double> list) {
+        DecimalFormat format = new DecimalFormat("0.0");
+
         double soma = 0;
+        Double media;
+
         for (int i = 0; i < list.size(); i++) 
             soma += list.get(i);
+
+        media = soma / list.size();
         
-        return soma / list.size();
+        return format.format(media).toString();
     }
-    public void backToHome()
-    {
+
+    public void backToHome() {
         try {
-        App.setRoot("home_page");
+            App.setRoot("home_page");
         }
-        catch (IOException e)
-        {
+        catch (IOException e) {
             e.printStackTrace();
         }
     }

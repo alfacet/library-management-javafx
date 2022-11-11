@@ -87,7 +87,8 @@ public class LoginController extends BigController {
         // MongoCollection<Document> colecao2 = banco.getCollection("ratings");
         
         // Document bruh = new Document();
-        // bruh.append("ratings", "dhabkd");
+        // ArrayList<Rating> dhad = new ArrayList<Rating>();
+        // bruh.append("ratings", dhad.toString());
         // colecao2.insertOne(bruh);
         System.setProperty("DEBUG.MONGO", "true");
         System.setProperty("DB.TRACE", "true");
@@ -249,6 +250,7 @@ public class LoginController extends BigController {
                 }
             } catch (Exception e) {
                 System.out.println("Impossible to connect!");
+                e.printStackTrace();
             }
         }
     }
