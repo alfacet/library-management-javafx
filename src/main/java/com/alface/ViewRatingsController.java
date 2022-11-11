@@ -69,7 +69,7 @@ public class ViewRatingsController extends BigController {
             Rating rating = gson.fromJson(vetor.get(i), Rating.class);
             if(rating.getTitle().equals(actualBook.getTitle()))
             {
-                Label nome = new Label(rating.getAuthor() + "- " + rating.getRating() + " /10");
+                Label nome = new Label(rating.getAuthor() + " - " + rating.getRating() + " /10");
                 nome.setFont(new Font("Open Sans Semibold", 20));
                 Text comm = new Text(rating.getCommentary());
                 comm.setWrappingWidth(431.11561584472656);
