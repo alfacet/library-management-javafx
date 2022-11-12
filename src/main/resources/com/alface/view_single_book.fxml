@@ -13,11 +13,16 @@
    <children>
       <AnchorPane prefHeight="402.0" prefWidth="600.0" style="-fx-background-color: white;">
          <children>
+            <Button fx:id="viewRatingButton" layoutX="322.0" layoutY="348.0" mnemonicParsing="false" onAction="#openRatingsPage" prefHeight="27.0" prefWidth="74.0" text="Ratings">
+               <font>
+                  <Font name="Open Sans Semibold" size="12.0" />
+               </font>
+            </Button>
             <Button fx:id="rateButton" layoutX="322.0" layoutY="349.0" mnemonicParsing="false" onAction="#openModal" prefHeight="27.0" prefWidth="74.0" text="Rate" visible="false">
                <font>
                   <Font name="Open Sans Semibold" size="12.0" />
                </font></Button>
-            <Label fx:id="bookTitle" layoutX="26.0" layoutY="16.0" prefHeight="35.0" prefWidth="551.0" text="Titulo" textFill="#2f4978">
+            <Label fx:id="bookTitle" alignment="CENTER" layoutX="2.0" layoutY="16.0" prefHeight="35.0" prefWidth="594.0" text="Titulo" textFill="#2f4978">
                <font>
                   <Font name="Open Sans Semibold" size="24.0" />
                </font></Label>
@@ -35,7 +40,7 @@
                   <Font name="Open Sans Semibold" size="12.0" />
                </font></Button>
             <Label fx:id="messageLabel" layoutX="426.0" layoutY="306.0" text="Book added!" visible="false" />
-            <Button fx:id="homeButton" layoutX="406.0" layoutY="349.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="27.0" prefWidth="74.0" text="Home">
+            <Button fx:id="backButton" layoutX="406.0" layoutY="349.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="74.0" text="Back">
                <font>
                   <Font name="Open Sans Semibold" size="12.0" />
                </font></Button>
@@ -74,16 +79,16 @@
                            </font>
                         </Label>
                         <ComboBox fx:id="selectRatingComboBox" layoutX="145.0" layoutY="48.0" prefWidth="150.0" promptText="Select here:" style="-fx-background-color: white;" />
+                        <Label fx:id="errorLabel" layoutX="87.0" layoutY="330.0" text="Please select a rating and write a commentary!" visible="false">
+                           <font>
+                              <Font name="Open Sans Semibold" size="13.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                </children>
             </VBox>
             <ImageView fx:id="coverImage" fitHeight="175.0" fitWidth="129.0" layoutX="394.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="viewRatingButton" layoutX="322.0" layoutY="348.0" mnemonicParsing="false" onAction="#openRatingsPage" prefHeight="27.0" prefWidth="74.0" text="Ratings">
-               <font>
-                  <Font name="Open Sans Semibold" size="12.0" />
-               </font>
-            </Button>
          </children>
       </AnchorPane>
    </children>

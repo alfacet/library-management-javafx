@@ -22,6 +22,7 @@ import io.github.cdimascio.dotenv.Dotenv;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -29,6 +30,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 public class ViewSingleBookController extends BigController {
@@ -59,8 +61,10 @@ public class ViewSingleBookController extends BigController {
     @FXML TextArea ratingCommentaryInput;
     @FXML Label descriptionTitle;
     @FXML ComboBox<String> selectRatingComboBox;
-    @FXML Button homeButton;
+    @FXML Button backButton;
     @FXML Button viewRatingButton;
+    @FXML Label errorLabel;
+    
     static Book actualBook;
 
     public ViewSingleBookController() {
@@ -92,6 +96,15 @@ public class ViewSingleBookController extends BigController {
         removeBookButton.setVisible(!b);
         viewRatingButton.setVisible(b);
         rateButton.setVisible(!b);
+        backButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event)
+            {
+                if(b)
+                    changePage("add_books");
+                else
+                    changePage("view_books");
+            }
+            });
         String oldThumb = actualBook.thumbnail;
         if (oldThumb != null)
             coverImage.setImage(new Image(tiraAspas(oldThumb)));
@@ -158,11 +171,11 @@ public class ViewSingleBookController extends BigController {
         newList.remove(App.getAddedBookIndex());
         App.setAddedBooksList(newList);
         colecao.updateOne(eq("username", App.getUser()), combine(set("books", gson.toJson(newList))));
-        backToHome();
+        changePage("view_books");
     }
-    public void backToHome() {
+    public void changePage(String s) {
         try {
-            App.setRoot("home_page");
+            App.setRoot(s);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -178,7 +191,7 @@ public class ViewSingleBookController extends BigController {
         addBookButton.setVisible(!modalIsVisible);
         removeBookButton.setVisible(!modalIsVisible);
         rateButton.setVisible(!modalIsVisible);
-        homeButton.setVisible(!modalIsVisible);
+        backButton.setVisible(!modalIsVisible);
         coverImage.setVisible(!modalIsVisible);
     }
     @FXML
@@ -194,20 +207,25 @@ public class ViewSingleBookController extends BigController {
     @FXML
     public void submitRating()
     {
-        MongoCollection<Document> colecao2 = banco.getCollection("ratings");
-        Rating novo = new Rating(App.getUser(), actualBook.getTitle(), ratingCommentaryInput.getText(), Double.parseDouble(selectRatingComboBox.getValue()));
-        ArrayList<Rating> DESGRAÇA = App.getRatingsList();
-        DESGRAÇA.add(novo);
-        App.setRatingsList(DESGRAÇA);
-        try {
-        colecao2.updateOne(eq(new ObjectId("636e49dba38bc508948b2e41")), combine(set("ratings", gson.toJson(DESGRAÇA))));
-        }
-        catch(Exception e)
+        if(selectRatingComboBox.getValue() != null && !ratingCommentaryInput.getText().equals(""))
         {
-            e.printStackTrace();
+            MongoCollection<Document> colecao2 = banco.getCollection("ratings");
+            Rating novo = new Rating(App.getUser(), actualBook.getTitle(), ratingCommentaryInput.getText(), Double.parseDouble(selectRatingComboBox.getValue()));
+            ArrayList<Rating> DESGRAÇA = App.getRatingsList();
+            DESGRAÇA.add(novo);
+            App.setRatingsList(DESGRAÇA);
+            try {
+                colecao2.updateOne(eq(new ObjectId("6368f7ffd8d90300736e1ce9")), combine(set("ratings", gson.toJson(DESGRAÇA))));
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+            ratingCommentaryInput.clear();
+            closeModal();
         }
-        ratingCommentaryInput.clear();
-        closeModal();
+        else
+            errorLabel.setVisible(true);
     }
     public void openRatingsPage()
     {

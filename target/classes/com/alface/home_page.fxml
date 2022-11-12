@@ -15,7 +15,7 @@
     <children>
       <AnchorPane fx:id="circulo1" prefHeight="342.0" prefWidth="459.0">
          <children>
-            <Circle fx:id="circle3" fill="#d2d7dc" layoutX="434.0" layoutY="207.0" onMouseEntered="#changeCircle3Scale" onMouseExited="#backChangeCircle3Scale" opacity="0.5" radius="35.0" stroke="#402f2f" strokeType="INSIDE" strokeWidth="2.0" />
+            <Circle fx:id="circle3" fill="#d2d7dc" layoutX="434.0" layoutY="207.0" onMouseClicked="#mudarPaginaStatistics" onMouseEntered="#changeCircle3Scale" onMouseExited="#backChangeCircle3Scale" opacity="0.5" radius="35.0" stroke="#402f2f" strokeType="INSIDE" strokeWidth="2.0" />
               <Label fx:id="titulo" layoutX="21.0" layoutY="22.0" prefHeight="40.0" prefWidth="482.0" text="Secondary view" textFill="#2f4978">
                <font>
                   <Font name="Open Sans Bold" size="28.0" />
@@ -41,7 +41,7 @@
                   <Font name="Open Sans Semibold" size="18.0" />
                </font>
             </Label>
-            <ImageView fx:id="imagemEstatisticas" fitHeight="56.0" fitWidth="53.0" layoutX="407.0" layoutY="180.0" onMouseEntered="#changeCircle3Scale" onMouseExited="#backChangeCircle3Scale" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imagemEstatisticas" fitHeight="56.0" fitWidth="53.0" layoutX="407.0" layoutY="180.0" onMouseClicked="#mudarPaginaStatistics" onMouseEntered="#changeCircle3Scale" onMouseExited="#backChangeCircle3Scale" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../Users/natha/OneDrive/Imagens/iiNqJH9G_400x400.jpg" />
                </image>

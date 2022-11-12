@@ -137,5 +137,15 @@ public class HomePageController extends BigController {
             System.out.println(e);
         }
     }
-
+    @FXML
+    public void mudarPaginaStatistics()
+    {
+        try {
+            App.setRoot("statistics");
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
 }
