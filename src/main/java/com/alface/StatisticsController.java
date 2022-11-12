@@ -6,25 +6,34 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 
 public class StatisticsController extends BigController {
     @FXML Label bookNumberLabel;
     @FXML Label pageNumberLabel;
     @FXML Label favAuthorLabel;
     @FXML Label booksFromAuthorLabel;
+    @FXML VBox errorScreen;
     public void initialize()
     {
         display();
     }
     public void display()
-    {
-        Integer bookNumber = App.getAddedBooksList().size();
-        bookNumberLabel.setText(bookNumber.toString());
-        Integer pageNumber = somatorio(App.getAddedBooksList());
-        pageNumberLabel.setText(pageNumber.toString());
-        Author fav = autorFavorito(App.getAddedBooksList());
-        favAuthorLabel.setText(fav.name);
-        booksFromAuthorLabel.setText(fav.books.toString());
+    {  
+        if(!App.getAddedBooksList().isEmpty())
+        {
+            Integer bookNumber = App.getAddedBooksList().size();
+            bookNumberLabel.setText(bookNumber.toString());
+            Integer pageNumber = somatorio(App.getAddedBooksList());
+            pageNumberLabel.setText(pageNumber.toString());
+            Author fav = autorFavorito(App.getAddedBooksList());
+            favAuthorLabel.setText(fav.name);
+            booksFromAuthorLabel.setText(fav.books.toString());
+        }
+        else
+        {
+            errorScreen.setVisible(true);
+        }
     }
     public int somatorio(ArrayList<Book> lista)
     {
