@@ -230,7 +230,7 @@ public class ViewSingleBookController extends BigController {
             DESGRAÇA.add(novo);
             App.setRatingsList(DESGRAÇA);
             try {
-                colecao2.updateOne(eq(new ObjectId("6368f7ffd8d90300736e1ce9")), combine(set("ratings", gson.toJson(DESGRAÇA))));
+                colecao2.updateOne(eq(new ObjectId("636e49dba38bc508948b2e41")), combine(set("ratings", gson.toJson(DESGRAÇA))));
             }
             catch(Exception e)
             {

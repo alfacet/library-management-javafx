@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import org.bson.Document;
-
+import org.bson.types.ObjectId;
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.combine;
+import static com.mongodb.client.model.Updates.set;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -69,7 +72,7 @@ public class LoginController extends BigController {
     final MongoCollection colecao = banco.getCollection("data");
     final FindIterable<Document> it = colecao.find();
     final MongoCursor<Document> mongoCursor = it.iterator();
-
+    final Gson gson = new Gson();
     public LoginController() {
         super();
     }
@@ -84,16 +87,15 @@ public class LoginController extends BigController {
     @FXML
     public void initialize() {
         display();
-        // MongoCollection<Document> colecao2 = banco.getCollection("ratings");
-        
-        // Document bruh = new Document();
-        // ArrayList<Rating> dhad = new ArrayList<Rating>();
-        // bruh.append("ratings", dhad.toString());
-        // colecao2.insertOne(bruh);
+        //clearRatings();
         System.setProperty("DEBUG.MONGO", "true");
         System.setProperty("DB.TRACE", "true");
     }
-
+    public void clearRatings()
+    {
+        MongoCollection<Document> colecao2 = banco.getCollection("ratings");
+        colecao2.updateOne(eq(new ObjectId("636e49dba38bc508948b2e41")), combine(set("ratings", "[]")));
+    }
     @FXML
     public void display() {
         super.setPath();
