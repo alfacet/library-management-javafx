@@ -44,7 +44,6 @@ public class ViewRatingsController extends BigController {
     final FindIterable<Document> it = colecao.find();
     final MongoCursor<Document> mongoCursor = it.iterator();
     final Gson gson = new Gson();
-    static Book actualBook = App.getBooksList().get(App.getBookIndex());
     @FXML
     Label titleLabel;
     @FXML
@@ -59,6 +58,7 @@ public class ViewRatingsController extends BigController {
 
     public void display()
     {
+        Book actualBook = App.getBooksList().get(App.getBookIndex());
         ArrayList<Double> avaliacoes = new ArrayList<Double>();
         titleLabel.setText(actualBook.getTitle());
         ObservableList<Node> lista = FXCollections.observableArrayList();
