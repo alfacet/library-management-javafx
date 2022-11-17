@@ -7,6 +7,8 @@ import java.util.Comparator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class StatisticsController extends BigController {
     @FXML Label bookNumberLabel;
@@ -14,12 +16,24 @@ public class StatisticsController extends BigController {
     @FXML Label favAuthorLabel;
     @FXML Label booksFromAuthorLabel;
     @FXML VBox errorScreen;
+    @FXML ImageView few_books;
+    @FXML ImageView alotof_books;
+    @FXML ImageView jim_doge;
+    @FXML ImageView weak_doge;
+
     public void initialize()
     {
         display();
     }
+
+    @FXML
     public void display()
     {  
+        alotof_books.setImage(new Image(super.getPathImages() + "alotof_books.png"));
+        few_books.setImage(new Image(super.getPathImages() + "few_books.png"));
+        jim_doge.setImage(new Image(super.getPathImages() + "jim_doge.png"));
+        weak_doge.setImage(new Image(super.getPathImages() + "weak_doge.png"));
+
         if(!App.getAddedBooksList().isEmpty())
         {
             Integer bookNumber = App.getAddedBooksList().size();

@@ -51,6 +51,7 @@ public class ViewSingleBookController extends BigController {
     @FXML Label bookTitle;
     @FXML ImageView coverImage;
     @FXML Label bookPages;
+    @FXML Label pagesLabel;
     @FXML Label messageLabel;
     @FXML Button addBookButton;
     @FXML Label authorsLabel;
@@ -201,6 +202,12 @@ public class ViewSingleBookController extends BigController {
         rateButton.setVisible(!modalIsVisible);
         backButton.setVisible(!modalIsVisible);
         coverImage.setVisible(!modalIsVisible);
+        formal_doge.setVisible(!modalIsVisible);
+        h_frame.setVisible(!modalIsVisible);
+        h_frame2.setVisible(!modalIsVisible);
+        wow.setVisible(!modalIsVisible);
+        pagesLabel.setVisible(!modalIsVisible);
+        bookPages.setVisible(!modalIsVisible);
     }
     @FXML
     public void openModal()
