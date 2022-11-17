@@ -2,7 +2,7 @@
 
 This page is intended for Linguagem de Programação, a subject of Computer Networks at CEFET-MG. <br>
 It is focused on book management. Therefore, the user has the freedom to view and add new books. <br>
-The resources uses are: Java (programming language), JavaFX (window), MongoDB (login system).
+The resources used are: Java (programming language), JavaFX (window), MongoDB (login system).
 
 ## Developers:
 * <a href="https://github.com/alfacet">👨‍💻 Filipe Davi</a>
