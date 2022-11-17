@@ -64,6 +64,10 @@ public class ViewSingleBookController extends BigController {
     @FXML Button backButton;
     @FXML Button viewRatingButton;
     @FXML Label errorLabel;
+    @FXML ImageView h_frame;
+    @FXML ImageView h_frame2;
+    @FXML ImageView wow;
+    @FXML ImageView formal_doge;
     
     static Book actualBook;
 
@@ -91,6 +95,10 @@ public class ViewSingleBookController extends BigController {
 
     @FXML
     public void display() {
+        h_frame.setImage(new Image(super.getPathImages() + "half_frame.png"));
+        h_frame2.setImage(new Image(super.getPathImages() + "half_frame2.png"));
+        wow.setImage(new Image(super.getPathImages() + "wow.png"));
+        formal_doge.setImage(new Image(super.getPathImages() + "formal_doge.png"));
         boolean b = App.getWhatList() == App.SEARCHED_BOOKS_LIST ? true : false;
         addBookButton.setVisible(b);
         removeBookButton.setVisible(!b);

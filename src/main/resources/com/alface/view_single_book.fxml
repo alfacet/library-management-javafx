@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -13,10 +15,19 @@
    <children>
       <AnchorPane prefHeight="402.0" prefWidth="600.0" style="-fx-background-color: white;">
          <children>
-            <Button fx:id="viewRatingButton" layoutX="322.0" layoutY="348.0" mnemonicParsing="false" onAction="#openRatingsPage" prefHeight="27.0" prefWidth="74.0" text="Ratings">
+            <ImageView fx:id="coverImage" fitHeight="192.0" fitWidth="131.0" layoutX="62.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="h_frame" fitHeight="59.0" fitWidth="57.0" layoutX="50.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../Downloads/half_frame.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="viewRatingButton" layoutX="275.0" layoutY="335.0" mnemonicParsing="false" onAction="#openRatingsPage" prefHeight="33.0" prefWidth="90.0" style="-fx-border-radius: 50px; -fx-border-color: black; -fx-background-radius: 50px; -fx-background-color: #688ac8;" text="Ratings" textFill="WHITE">
                <font>
-                  <Font name="Open Sans Semibold" size="12.0" />
+                  <Font name="Open Sans Bold" size="15.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button fx:id="rateButton" layoutX="322.0" layoutY="349.0" mnemonicParsing="false" onAction="#openModal" prefHeight="27.0" prefWidth="74.0" text="Rate" visible="false">
                <font>
@@ -26,32 +37,45 @@
                <font>
                   <Font name="Open Sans Semibold" size="24.0" />
                </font></Label>
-            <Label fx:id="descriptionTitle" layoutX="20.0" layoutY="126.0" text="Description:" textFill="#2f4978">
+            <Label fx:id="descriptionTitle" layoutX="270.0" layoutY="99.0" prefHeight="25.0" prefWidth="125.0" text="Description:" textFill="#2f4978">
                <font>
                   <Font name="Open Sans Semibold" size="18.0" />
                </font></Label>
-            <Label fx:id="bookPages" layoutX="427.0" layoutY="252.0" text="Paginas: " textFill="#d9b669" />
-            <TextArea fx:id="descriptionLabel" editable="false" layoutX="14.0" layoutY="154.0" prefHeight="196.0" prefWidth="291.0" style="-fx-border-color: white; -fx-background-color: white;" wrapText="true">
+            <Label fx:id="bookPages" layoutX="52.0" layoutY="333.0" text="Paginas: " textFill="#d9b669">
+               <font>
+                  <Font name="Open Sans Bold" size="12.0" />
+               </font></Label>
+            <TextArea fx:id="descriptionLabel" editable="false" layoutX="270.0" layoutY="121.0" prefHeight="209.0" prefWidth="294.0" style="-fx-border-color: darkblue; -fx-background-color: white;" wrapText="true">
                <font>
                   <Font name="Open Sans" size="16.0" />
                </font></TextArea>
-            <Button fx:id="addBookButton" layoutX="489.0" layoutY="349.0" mnemonicParsing="false" onAction="#addBook" prefHeight="27.0" prefWidth="74.0" text="Add book">
+            <Button fx:id="addBookButton" layoutX="463.0" layoutY="335.0" mnemonicParsing="false" onAction="#addBook" prefHeight="33.0" prefWidth="97.0" style="-fx-border-radius: 50px; -fx-border-color: black; -fx-background-radius: 50px; -fx-background-color: #2f4978;" text="Add book" textFill="WHITE">
                <font>
-                  <Font name="Open Sans Semibold" size="12.0" />
-               </font></Button>
+                  <Font name="Open Sans Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <Label fx:id="messageLabel" layoutX="426.0" layoutY="306.0" text="Book added!" visible="false" />
-            <Button fx:id="backButton" layoutX="406.0" layoutY="349.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="74.0" text="Back">
+            <Button fx:id="backButton" layoutX="369.0" layoutY="335.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="90.0" style="-fx-border-radius: 50px; -fx-border-color: black; -fx-background-radius: 50px; -fx-background-color: #4f6794;" text="Back" textFill="WHITE">
                <font>
-                  <Font name="Open Sans Semibold" size="12.0" />
-               </font></Button>
-            <Label fx:id="authorsLabel" layoutX="25.0" layoutY="65.0" text="Autores" textFill="#d9b669">
+                  <Font name="Open Sans Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Label fx:id="authorsLabel" layoutX="53.0" layoutY="73.0" text="Autores" textFill="#51504f">
                <font>
-                  <Font name="Open Sans Semibold" size="18.0" />
+                  <Font name="Open Sans Semibold Italic" size="16.0" />
                </font></Label>
-            <Button fx:id="removeBookButton" layoutX="489.0" layoutY="349.0" mnemonicParsing="false" onAction="#removeBook" prefHeight="26.0" prefWidth="74.0" text="Remove ">
+            <Button fx:id="removeBookButton" layoutX="463.0" layoutY="335.0" mnemonicParsing="false" onAction="#removeBook" prefHeight="33.0" prefWidth="97.0" style="-fx-border-radius: 50px; -fx-border-color: black; -fx-background-radius: 50px; -fx-background-color: #2f4978;" text="Remove " textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="Open Sans Semibold" size="12.0" />
-               </font></Button>
+                  <Font name="Open Sans Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <VBox fx:id="modal" layoutX="67.0" layoutY="14.0" prefHeight="357.0" prefWidth="466.0" style="-fx-border-color: grey; -fx-background-color: #F3F3F3; -fx-border-radius: 30px; -fx-background-radius: 30px;" visible="false">
                <children>
                   <AnchorPane prefHeight="335.0" prefWidth="466.0">
@@ -88,7 +112,26 @@
                   </AnchorPane>
                </children>
             </VBox>
-            <ImageView fx:id="coverImage" fitHeight="175.0" fitWidth="129.0" layoutX="394.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="formal_doge" fitHeight="78.0" fitWidth="74.0" layoutX="451.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../Downloads/formal_doge.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="wow" fitHeight="134.0" fitWidth="105.0" layoutX="483.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../Downloads/wow.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="52.0" layoutY="347.0" text="pages" textFill="#d9b669">
+               <font>
+                  <Font name="Open Sans Bold" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="h_frame2" fitHeight="52.0" fitWidth="52.0" layoutX="156.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../Downloads/half_frame2.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

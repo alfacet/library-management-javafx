@@ -58,7 +58,7 @@
                </font></Label>
             <ImageView fx:id="loadingGif" fitHeight="33.0" fitWidth="34.0" layoutX="417.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
                <cursor>
-                  <Cursor fx:constant="WAIT" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor></ImageView>
             <Button fx:id="homeButton" layoutX="491.0" layoutY="339.0" mnemonicParsing="false" onAction="#switchToHome" prefHeight="33.0" prefWidth="72.0" style="-fx-background-color: #2f4978; -fx-border-radius: 50px; -fx-border-color: black; -fx-background-radius: 50px;" text="Home" textFill="WHITE">
                <cursor>
