@@ -1,29 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="381.0" prefWidth="573.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alface.ViewRatingsController">
    <children>
       <AnchorPane prefHeight="381.0" prefWidth="573.0">
          <children>
-            <Label fx:id="titleLabel" layoutX="24.0" layoutY="26.0" text="Title" textFill="#2f4978" textOverrun="CLIP">
+            <Line endX="-17.36395263671875" endY="120.121337890625" layoutX="99.0" layoutY="262.0" opacity="0.2" startX="-108.36395263671875" startY="-29.0" stroke="BLUE" strokeWidth="3.0" />
+            <Line endX="31.514724731445312" endY="128.0" layoutX="101.0" layoutY="253.0" opacity="0.3" startX="-100.99998474121094" startY="-93.0" stroke="GOLD" strokeWidth="3.0" />
+            <Circle layoutX="519.0" layoutY="303.0" radius="39.0" stroke="WHITE" strokeType="INSIDE">
+               <fill>
+                  <LinearGradient endX="1.0" startX="0.13744075829383887" startY="0.5734597156398105">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Circle>
+            <Circle layoutX="519.0" layoutY="218.0" radius="39.0" stroke="WHITE" strokeType="INSIDE">
+               <fill>
+                  <LinearGradient endX="1.0" startX="0.13744075829383887" startY="0.5734597156398105">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Circle>
+            <Circle layoutX="519.0" layoutY="134.0" radius="39.0" stroke="WHITE" strokeType="INSIDE">
+               <fill>
+                  <LinearGradient endX="1.0" startX="0.13744075829383887" startY="0.5734597156398105">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Circle>
+            <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="19.0" prefHeight="35.0" prefWidth="527.0" text="Title" textAlignment="CENTER" textFill="#2f4978" textOverrun="CLIP">
                <font>
                   <Font name="Open Sans Semibold" size="24.0" />
                </font>
             </Label>
-            <ListView fx:id="ratingsList" layoutX="24.0" layoutY="124.0" prefHeight="193.0" prefWidth="490.0" />
-            <Label fx:id="mediaLabel" layoutX="24.0" layoutY="71.0" text="Média de x / 10" textFill="#535559" textOverrun="CLIP">
+            <ListView fx:id="ratingsList" layoutX="18.0" layoutY="105.0" prefHeight="222.0" prefWidth="441.0" style="-fx-border-color: #2f4978;" />
+            <Label fx:id="mediaLabel" layoutX="21.0" layoutY="65.0" text="Média de x / 10" textFill="#535559" textOverrun="CLIP">
                <font>
-                  <Font name="Open Sans Semibold" size="20.0" />
+                  <Font name="Open Sans Semibold Italic" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="234.0" layoutY="333.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="37.0" prefWidth="74.0" text="Home" />
+            <Button layoutX="220.0" layoutY="333.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="37.0" prefWidth="78.0" style="-fx-border-radius: 50px; -fx-border-color: black; -fx-background-radius: 50px; -fx-background-color: #2f4978;" text="Home" textFill="WHITE">
+               <font>
+                  <Font name="Open Sans Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <ImageView fx:id="happy" fitHeight="78.0" fitWidth="85.0" layoutX="475.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../Downloads/happy_doge.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="sad" fitHeight="78.0" fitWidth="85.0" layoutX="475.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../Downloads/sad_doge.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="angry" fitHeight="78.0" fitWidth="78.0" layoutX="475.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../Downloads/angry_doge.png" />
+               </image>
+            </ImageView>
+            <Line endX="-39.86393737792969" endY="88.24267578125" layoutX="76.0" layoutY="296.0" opacity="0.2" startX="-83.24263000488281" startY="14.0" stroke="RED" strokeWidth="3.0" />
          </children>
       </AnchorPane>
    </children>

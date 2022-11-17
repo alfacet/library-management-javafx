@@ -29,6 +29,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class ViewRatingsController extends BigController {
     Dotenv dotenv = Dotenv.configure()
@@ -50,6 +52,12 @@ public class ViewRatingsController extends BigController {
     Label mediaLabel;
     @FXML
     ListView<Node> ratingsList;
+    @FXML
+    ImageView happy;
+    @FXML
+    ImageView sad;
+    @FXML
+    ImageView angry;
 
     public void initialize() {
         System.out.println("asdasd");
@@ -58,6 +66,10 @@ public class ViewRatingsController extends BigController {
 
     public void display()
     {
+        happy.setImage(new Image(super.getPathImages() + "happy_doge.png"));
+        sad.setImage(new Image(super.getPathImages() + "sad_doge.png"));
+        angry.setImage(new Image(super.getPathImages() + "angry_doge.png"));
+
         Book actualBook = App.getBooksList().get(App.getBookIndex());
         ArrayList<Double> avaliacoes = new ArrayList<Double>();
         titleLabel.setText(actualBook.getTitle());
