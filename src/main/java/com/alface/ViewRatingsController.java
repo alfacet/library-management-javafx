@@ -97,7 +97,7 @@ public class ViewRatingsController extends BigController {
         if (lista.isEmpty())
            mediaLabel.setText("This book is not rated yet"); 
         else
-            mediaLabel.setText("This book has a average rating of " + media(avaliacoes) + " / 10");
+            mediaLabel.setText("This book has an average rating of " + media(avaliacoes) + " / 10");
     }
     public String media(ArrayList<Double> list) {
         DecimalFormat format = new DecimalFormat("0.0");
