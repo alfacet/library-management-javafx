@@ -37,7 +37,7 @@ public class ViewSingleBookController extends BigController {
             .ignoreIfMissing()
             .load();
 
-    final MongoClient cliente = new MongoClient(new MongoClientURI(dotenv.get("MONGO_URI")));
+    final MongoClient cliente = new MongoClient(new MongoClientURI("mongodb+srv://alface:J6ntYPLfZCeKaWXv@userdata.fhh1quh.mongodb.net/test"));
     final MongoDatabase banco = cliente.getDatabase("user_info");
     final Document dados = new Document();
     final MongoCollection<Document> colecao = banco.getCollection("data");
@@ -68,7 +68,9 @@ public class ViewSingleBookController extends BigController {
     @FXML ImageView h_frame2;
     @FXML ImageView wow;
     @FXML ImageView formal_doge;
-    
+
+
+
     static Book actualBook;
 
     public ViewSingleBookController() {

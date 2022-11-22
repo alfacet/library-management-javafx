@@ -23,11 +23,11 @@ public class BigController {
             for (int i = index; i < bruh.length(); i++) 
                 bruh2 += bruh.charAt(i);
             
-            this.pathImages = "file:///" + bruh2 + "/src/main/images/";
+            this.pathImages = "file:///" + bruh2 + "/images/";
             this.pathCss = System.getProperty("user.dir") + "/src/main/java/css/";
 
         } else {
-            this.pathImages = "file:\\\\\\" + System.getProperty("user.dir") + "\\src\\main\\images\\";
+            this.pathImages = "file:\\\\\\" + System.getProperty("user.dir") + "\\images\\";
             this.pathCss = System.getProperty("user.dir") + "\\src\\main\\java\\css\\";
         }
     }

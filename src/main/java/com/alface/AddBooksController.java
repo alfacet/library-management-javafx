@@ -98,7 +98,7 @@ public class AddBooksController extends BigController {
                 pesquisa = pesquisa.replaceAll(" ", "%20");
 
                 URL link = new URL(
-                        "https://www.googleapis.com/books/v1/volumes?q=" + pesquisa + dotenv.get("GOOGLE_API"));
+                        "https://www.googleapis.com/books/v1/volumes?q=" + pesquisa + "&key=AIzaSyDYoN4hV1uZKECKr5J0Lva1nWbp8cZtg1c");
                 System.out.println(link);
                 HttpURLConnection conexao = (HttpURLConnection) link.openConnection();
                 conexao.setRequestMethod("GET");
