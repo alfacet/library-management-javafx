@@ -9,12 +9,9 @@ import javafx.scene.*;
 import javafx.scene.image.*;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import io.github.cdimascio.dotenv.Dotenv;
-import io.github.cdimascio.dotenv.DotenvEntry;
 
 public class App extends Application {
     private static String user;
-    private static String userId;
     private static Scene scene;
     private static ArrayList<Book> booksList;
     private static ArrayList<Book> addedBooksList = new ArrayList<Book>();

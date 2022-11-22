@@ -2,10 +2,7 @@ package com.alface;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import org.bson.Document;
-import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import com.google.gson.Gson;
@@ -19,11 +16,11 @@ import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Updates.combine;
 import static com.mongodb.client.model.Updates.set;
 import io.github.cdimascio.dotenv.Dotenv;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -47,6 +44,7 @@ public class ViewSingleBookController extends BigController {
     final FindIterable<Document> it = colecao.find();
     final MongoCursor<Document> mongoCursor = it.iterator();
     final Gson gson = new Gson();
+    @FXML VBox tela;
     @FXML TextArea descriptionLabel;
     @FXML Label bookTitle;
     @FXML ImageView coverImage;
@@ -59,6 +57,7 @@ public class ViewSingleBookController extends BigController {
     @FXML Button rateButton;
     @FXML VBox modal;
     @FXML Button submitRateButton;
+    @FXML Button closeButton;
     @FXML TextArea ratingCommentaryInput;
     @FXML Label descriptionTitle;
     @FXML ComboBox<String> selectRatingComboBox;
@@ -251,5 +250,26 @@ public class ViewSingleBookController extends BigController {
         {
             e.printStackTrace();
         }
+    }
+    @FXML
+    public void mudarCorClose()
+    {
+        closeButton.setStyle("-fx-background-color: #FF8886; -fx-background-radius: 10px;");
+        tela.setCursor(Cursor.HAND);
+    }
+    public void voltarCorClose()
+    {
+        closeButton.setStyle("-fx-background-color: red; -fx-background-radius: 10px;");
+           tela.setCursor(Cursor.DEFAULT);
+    }
+    public void mudarCorSubmit()
+    {
+        submitRateButton.setStyle("-fx-background-color: lightgreen;-fx-background-radius: 10px;");
+        tela.setCursor(Cursor.HAND);
+    }
+    public void voltarCorSubmit()
+    {
+        submitRateButton.setStyle("-fx-background-color: green; -fx-background-radius: 10px;");
+        tela.setCursor(Cursor.DEFAULT);
     }
 }

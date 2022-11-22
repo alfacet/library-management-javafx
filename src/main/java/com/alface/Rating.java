@@ -1,6 +1,4 @@
 package com.alface;
-
-import com.google.gson.Gson;
 public class Rating {
     public String author;
     public String title;

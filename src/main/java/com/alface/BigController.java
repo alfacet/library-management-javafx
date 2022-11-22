@@ -1,7 +1,5 @@
 package com.alface;
 
-import java.util.ArrayList;
-
 public class BigController {
     // Quando for colocar imagens, usa o path + o nome da imagem pra ficar mais
     // fácil c:

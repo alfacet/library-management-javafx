@@ -11,10 +11,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alface.ViewSingleBookController">
+<VBox fx:id="tela" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alface.ViewSingleBookController">
    <children>
       <AnchorPane prefHeight="402.0" prefWidth="600.0" style="-fx-background-color: white;">
          <children>
+            <Label fx:id="pagesLabel" layoutX="52.0" layoutY="347.0" text="pages" textFill="#d9b669">
+               <font>
+                  <Font name="Open Sans Bold" size="12.0" />
+               </font>
+            </Label>
             <ImageView fx:id="coverImage" fitHeight="192.0" fitWidth="131.0" layoutX="62.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="h_frame" fitHeight="59.0" fitWidth="57.0" layoutX="50.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -91,14 +96,14 @@
                            <font>
                               <Font name="Open Sans Semibold" size="18.0" />
                            </font></Label>
-                        <Button fx:id="submitRateButton" layoutX="121.0" layoutY="284.0" mnemonicParsing="false" onAction="#submitRating" prefHeight="37.0" prefWidth="90.0" style="-fx-background-color: green; -fx-background-radius: 10px;" text="Submit" textFill="WHITE">
+                        <Button fx:id="submitRateButton" layoutX="121.0" layoutY="284.0" mnemonicParsing="false" onAction="#submitRating" onMouseEntered="#mudarCorSubmit" onMouseExited="#voltarCorSubmit" prefHeight="37.0" prefWidth="90.0" style="-fx-background-color: green; -fx-background-radius: 10px;" text="Submit" textFill="WHITE">
                            <font>
                               <Font name="Open Sans Semibold" size="16.0" />
                            </font>
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></Button>
-                        <Button fx:id="closeButton" layoutX="233.0" layoutY="284.0" mnemonicParsing="false" onAction="#closeModal" prefHeight="37.0" prefWidth="90.0" style="-fx-background-color: red; -fx-background-radius: 10px;" text="Close" textFill="WHITE">
+                        <Button fx:id="closeButton" layoutX="233.0" layoutY="284.0" mnemonicParsing="false" onAction="#closeModal" onMouseEntered="#mudarCorClose" onMouseExited="#voltarCorClose" prefHeight="37.0" prefWidth="90.0" style="-fx-background-color: red; -fx-background-radius: 10px;" text="Close" textFill="WHITE">
                            <font>
                               <Font name="Open Sans Semibold" size="16.0" />
                            </font>
@@ -131,11 +136,6 @@
                   <Image url="@../../../../../../../../../Downloads/wow.png" />
                </image>
             </ImageView>
-            <Label fx:id="pagesLabel" layoutX="52.0" layoutY="347.0" text="pages" textFill="#d9b669">
-               <font>
-                  <Font name="Open Sans Bold" size="12.0" />
-               </font>
-            </Label>
             <ImageView fx:id="h_frame2" fitHeight="52.0" fitWidth="52.0" layoutX="156.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../Downloads/half_frame2.png" />

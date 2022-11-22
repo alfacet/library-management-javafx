@@ -1,11 +1,6 @@
 package com.alface;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import static com.mongodb.client.model.Filters.eq;
@@ -13,9 +8,7 @@ import static com.mongodb.client.model.Updates.combine;
 import static com.mongodb.client.model.Updates.set;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.FindIterable;
@@ -27,11 +20,7 @@ import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import io.github.cdimascio.dotenv.Dotenv;
-import io.github.cdimascio.dotenv.DotenvEntry;
-import java.util.logging.Logger;
-
 public class LoginController extends BigController {
     @FXML
     VBox tela;
@@ -69,7 +58,7 @@ public class LoginController extends BigController {
 
     final MongoDatabase banco = cliente.getDatabase("user_info");
     final Document dados = new Document();
-    final MongoCollection colecao = banco.getCollection("data");
+    final MongoCollection<Document> colecao = banco.getCollection("data");
     final FindIterable<Document> it = colecao.find();
     final MongoCursor<Document> mongoCursor = it.iterator();
     final Gson gson = new Gson();
@@ -114,7 +103,7 @@ public class LoginController extends BigController {
     }
 
     public boolean nomeEstaEmUso() {
-        MongoCollection colec = banco.getCollection("data");
+        MongoCollection<Document> colec = banco.getCollection("data");
         FindIterable<Document> it = colec.find();
         MongoCursor<Document> mc = it.iterator();
 
