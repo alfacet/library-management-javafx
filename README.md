@@ -1,4 +1,4 @@
-# library-management-javafx
+# JavaFX, livraria e Doge!
 
 ## Introdução e funcionalidades
   Este é um trabalho da disciplina de Linguagem de Programação, dada no 2º ano do curso técnico em Redes de Computadores no Centro Federal de Educação Tecnológica de Minas Gerais (CEFET-MG). Trata-se de uma aplicação Java focada no gerenciamento de livros, que permite ao seu usuário realizar as seguintes operações:
