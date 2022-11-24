@@ -1,6 +1,7 @@
 package com.alface;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javafx.fxml.FXML;
@@ -71,6 +72,10 @@ public class HomePageController extends BigController {
     
     @FXML
     private void switchToPrimary() throws IOException {
+        App.setBooksList(new ArrayList<Book>());
+        App.setAddedBooksList(new ArrayList<Book>());
+        App.setAddedBookIndex(0);
+        App.setBookIndex(0);
         App.setRoot("login");
     }
 
